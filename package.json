@@ -1,0 +1,13 @@
+{
+  "name": "artifact-advisor",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local GOOD-export artifact planner and cleanup tool for Genshin Impact",
+  "scripts": {
+    "build": "node advisor.js",
+    "data": "node build-data.js",
+    "report": "node report.js",
+    "site": "node report.js --site",
+    "site:thin": "node report.js --site --thin"
+  }
+}

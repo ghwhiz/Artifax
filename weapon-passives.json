@@ -1,0 +1,2153 @@
+{
+  "UltimateOverlordsMegaMagicSword": {
+    "note": "ATK +24% at R5. The extra Melusine bonus is not modeled.",
+    "stats": {
+      "atk_": {
+        "r1": 0.12,
+        "r5": 0.24
+      }
+    },
+    "always": true
+  },
+  "AThousandBlazingSuns": {
+    "note": "After Skill/Burst: CRIT DMG +20% and ATK +28% for 6s. Modeled as active.",
+    "stats": {
+      "critDMG_": {
+        "r1": 0.2,
+        "r5": 0.4
+      },
+      "atk_": {
+        "r1": 0.28,
+        "r5": 0.56
+      }
+    }
+  },
+  "AquaSimulacra": {
+    "note": "HP +16% is always active. DMG +20% while opponents are nearby is conditional.",
+    "always": {
+      "stats": {
+        "hp_": [
+          0.16,
+          0.2,
+          0.24,
+          0.28,
+          0.32
+        ]
+      }
+    },
+    "damage": {
+      "dmg_": {
+        "r1": 0.2,
+        "r5": 0.4
+      }
+    }
+  },
+  "AquilaFavonia": {
+    "note": "ATK +20%. The on-hit heal/DMG proc is not modeled.",
+    "stats": {
+      "atk_": [
+        0.2,
+        0.25,
+        0.3,
+        0.35,
+        0.4
+      ]
+    },
+    "always": true
+  },
+  "Azurelight": {
+    "note": "Within 12s after Skill: ATK +24%. At 0 Energy: ATK +24% more and CRIT DMG +40%. Base ATK only is modeled; use an option for the 0-Energy state.",
+    "stats": {
+      "atk_": {
+        "r1": 0.24,
+        "r5": 0.48
+      }
+    },
+    "options": [
+      {
+        "label": "Skill active",
+        "stats": {
+          "atk_": {
+            "r1": 0.24,
+            "r5": 0.48
+          }
+        }
+      },
+      {
+        "label": "Skill active + 0 Energy",
+        "stats": {
+          "atk_": {
+            "r1": 0.48,
+            "r5": 0.96
+          },
+          "critDMG_": {
+            "r1": 0.4,
+            "r5": 0.8
+          }
+        }
+      }
+    ]
+  },
+  "BalladOfTheFjords": {
+    "note": "EM +240 with 3 different Elemental Types in the party.",
+    "stats": {
+      "eleMas": {
+        "r1": 120,
+        "r5": 240
+      }
+    }
+  },
+  "BlackcliffSlasher": {
+    "note": "ATK +12% per opponent defeated, max 3 stacks. Each stack has an independent duration.",
+    "options": [
+      {
+        "label": "3 stacks (max)",
+        "stats": {
+          "atk_": {
+            "r1": 0.36,
+            "r5": 0.72
+          }
+        }
+      },
+      {
+        "label": "2 stacks",
+        "stats": {
+          "atk_": {
+            "r1": 0.24,
+            "r5": 0.48
+          }
+        }
+      },
+      {
+        "label": "1 stack",
+        "stats": {
+          "atk_": {
+            "r1": 0.12,
+            "r5": 0.24
+          }
+        }
+      },
+      {
+        "label": "0 stacks",
+        "stats": {
+          "atk_": {
+            "r1": 0,
+            "r5": 0
+          }
+        }
+      }
+    ]
+  },
+  "BlackcliffLongsword": {
+    "note": "ATK +12% per opponent defeated, max 3 stacks. Each stack has an independent duration.",
+    "options": [
+      {
+        "label": "3 stacks (max)",
+        "stats": {
+          "atk_": {
+            "r1": 0.36,
+            "r5": 0.72
+          }
+        }
+      },
+      {
+        "label": "2 stacks",
+        "stats": {
+          "atk_": {
+            "r1": 0.24,
+            "r5": 0.48
+          }
+        }
+      },
+      {
+        "label": "1 stack",
+        "stats": {
+          "atk_": {
+            "r1": 0.12,
+            "r5": 0.24
+          }
+        }
+      },
+      {
+        "label": "0 stacks",
+        "stats": {
+          "atk_": {
+            "r1": 0,
+            "r5": 0
+          }
+        }
+      }
+    ]
+  },
+  "BlackcliffWarbow": {
+    "note": "ATK +12% per opponent defeated, max 3 stacks. Each stack has an independent duration.",
+    "options": [
+      {
+        "label": "3 stacks (max)",
+        "stats": {
+          "atk_": {
+            "r1": 0.36,
+            "r5": 0.72
+          }
+        }
+      },
+      {
+        "label": "2 stacks",
+        "stats": {
+          "atk_": {
+            "r1": 0.24,
+            "r5": 0.48
+          }
+        }
+      },
+      {
+        "label": "1 stack",
+        "stats": {
+          "atk_": {
+            "r1": 0.12,
+            "r5": 0.24
+          }
+        }
+      },
+      {
+        "label": "0 stacks",
+        "stats": {
+          "atk_": {
+            "r1": 0,
+            "r5": 0
+          }
+        }
+      }
+    ]
+  },
+  "CalamityOfEshu": {
+    "note": "While shielded: NA/CA DMG +40% and NA/CA CRIT Rate +16%. Typed bonuses are shown separately and do not change general CRIT Rate targets.",
+    "damage": {
+      "na_dmg_": {
+        "r1": 0.2,
+        "r5": 0.4
+      },
+      "na_critRate_": {
+        "r1": 0.08,
+        "r5": 0.16
+      }
+    }
+  },
+  "ChainBreaker": {
+    "note": "ATK +4.8% per qualifying party member, max 3. At 3 qualifying members, also gains EM +24.",
+    "options": [
+      {
+        "label": "3 members (max)",
+        "stats": {
+          "atk_": {
+            "r1": 0.144,
+            "r5": 0.288
+          },
+          "eleMas": {
+            "r1": 24,
+            "r5": 48
+          }
+        }
+      },
+      {
+        "label": "2 members",
+        "stats": {
+          "atk_": {
+            "r1": 0.096,
+            "r5": 0.192
+          }
+        }
+      },
+      {
+        "label": "1 member",
+        "stats": {
+          "atk_": {
+            "r1": 0.048,
+            "r5": 0.096
+          }
+        }
+      },
+      {
+        "label": "0 members"
+      }
+    ]
+  },
+  "Cloudforged": {
+    "note": "EM +40 per stack, max 2.",
+    "options": [
+      {
+        "label": "2 stacks (max)",
+        "stats": {
+          "eleMas": {
+            "r1": 160,
+            "r5": 320
+          }
+        }
+      },
+      {
+        "label": "1 stack",
+        "stats": {
+          "eleMas": {
+            "r1": 80,
+            "r5": 160
+          }
+        }
+      },
+      {
+        "label": "0 stacks",
+        "stats": {
+          "eleMas": {
+            "r1": 0,
+            "r5": 0
+          }
+        }
+      }
+    ]
+  },
+  "CrimsonMoonsSemblance": {
+    "note": "12% DMG with a Bond of Life, +24% more at 30%+ Bond. Modeled at 36%.",
+    "damage": {
+      "dmg_": {
+        "r1": 0.36,
+        "r5": 0.72
+      }
+    }
+  },
+  "Deathmatch": {
+    "note": "Choose the enemy-count state.",
+    "options": [
+      {
+        "label": "2+ enemies (ATK +32%, DEF +32%)",
+        "stats": {
+          "atk_": {
+            "r1": 0.16,
+            "r5": 0.32
+          },
+          "def_": {
+            "r1": 0.16,
+            "r5": 0.32
+          }
+        }
+      },
+      {
+        "label": "1 enemy (ATK +48%)",
+        "stats": {
+          "atk_": {
+            "r1": 0.24,
+            "r5": 0.48
+          }
+        }
+      }
+    ]
+  },
+  "DodocoTales": {
+    "note": "Charged Attack DMG +32% and ATK +16% after hits. Modeled as active.",
+    "stats": {
+      "atk_": {
+        "r1": 0.08,
+        "r5": 0.16
+      }
+    },
+    "damage": {
+      "ca_dmg_": {
+        "r1": 0.16,
+        "r5": 0.32
+      }
+    }
+  },
+  "EarthShaker": {
+    "note": "Skill DMG +16% after a Pyro reaction. Modeled as active.",
+    "damage": {
+      "skill_dmg_": {
+        "r1": 0.08,
+        "r5": 0.16
+      }
+    }
+  },
+  "EmeraldOrb": {
+    "note": "ATK +40% after a reaction. Modeled as active.",
+    "stats": {
+      "atk_": {
+        "r1": 0.2,
+        "r5": 0.4
+      }
+    }
+  },
+  "EtherlightSpindlelute": {
+    "note": "EM +200 for 20s after Skill. Modeled as active.",
+    "stats": {
+      "eleMas": {
+        "r1": 100,
+        "r5": 200
+      }
+    }
+  },
+  "FinaleOfTheDeep": {
+    "note": "ATK +24% after Skill and up to +300 flat ATK from Bond of Life. Modeled as active.",
+    "stats": {
+      "atk_": {
+        "r1": 0.12,
+        "r5": 0.24
+      },
+      "atk": {
+        "r1": 150,
+        "r5": 300
+      }
+    }
+  },
+  "FlowingPurity": {
+    "note": "Elemental DMG +8% after Skill and up to +12% more from Bond of Life. Modeled at 20%.",
+    "damage": {
+      "dmg_": {
+        "r1": 0.16,
+        "r5": 0.32
+      }
+    }
+  },
+  "FootprintOfTheRainbow": {
+    "note": "DEF +16% after Skill. Modeled as active.",
+    "stats": {
+      "def_": {
+        "r1": 0.08,
+        "r5": 0.16
+      }
+    }
+  },
+  "FreedomSworn": {
+    "note": "DMG +10% is always active. After reactions, the party ATK bonus is conditional.",
+    "always": {
+      "damage": {
+        "dmg_": [
+          0.1,
+          0.125,
+          0.15,
+          0.175,
+          0.2
+        ]
+      }
+    },
+    "stats": {
+      "atk_": {
+        "r1": 0.2,
+        "r5": 0.4
+      }
+    }
+  },
+  "Frostbreath": {
+    "note": "ATK +20% after a Cryo/Hydro reaction. Modeled as active.",
+    "stats": {
+      "atk_": {
+        "r1": 0.2,
+        "r5": 0.4
+      }
+    }
+  },
+  "FruitOfFulfillment": {
+    "note": "Each stack gives EM +24 and ATK -5%, max 5.",
+    "options": [
+      {
+        "label": "5 stacks (max)",
+        "stats": {
+          "eleMas": {
+            "r1": 120,
+            "r5": 240
+          },
+          "atk_": {
+            "r1": -0.25,
+            "r5": -0.25
+          }
+        }
+      },
+      {
+        "label": "4 stacks",
+        "stats": {
+          "eleMas": {
+            "r1": 96,
+            "r5": 192
+          },
+          "atk_": {
+            "r1": -0.2,
+            "r5": -0.2
+          }
+        }
+      },
+      {
+        "label": "3 stacks",
+        "stats": {
+          "eleMas": {
+            "r1": 72,
+            "r5": 144
+          },
+          "atk_": {
+            "r1": -0.15,
+            "r5": -0.15
+          }
+        }
+      },
+      {
+        "label": "2 stacks",
+        "stats": {
+          "eleMas": {
+            "r1": 48,
+            "r5": 96
+          },
+          "atk_": {
+            "r1": -0.1,
+            "r5": -0.1
+          }
+        }
+      },
+      {
+        "label": "1 stack",
+        "stats": {
+          "eleMas": {
+            "r1": 24,
+            "r5": 48
+          },
+          "atk_": {
+            "r1": -0.05,
+            "r5": -0.05
+          }
+        }
+      },
+      {
+        "label": "0 stacks",
+        "stats": {
+          "eleMas": {
+            "r1": 0,
+            "r5": 0
+          },
+          "atk_": {
+            "r1": 0,
+            "r5": 0
+          }
+        }
+      }
+    ]
+  },
+  "Hamayumi": {
+    "note": "NA DMG +32% and CA DMG +24%; doubled at full Energy. Base values modeled.",
+    "damage": {
+      "na_dmg_": {
+        "r1": 0.16,
+        "r5": 0.32
+      },
+      "ca_dmg_": {
+        "r1": 0.12,
+        "r5": 0.24
+      }
+    },
+    "always": true
+  },
+  "IbisPiercer": {
+    "note": "EM +40 per stack, max 2.",
+    "options": [
+      {
+        "label": "2 stacks (max)",
+        "stats": {
+          "eleMas": {
+            "r1": 80,
+            "r5": 160
+          }
+        }
+      },
+      {
+        "label": "1 stack",
+        "stats": {
+          "eleMas": {
+            "r1": 40,
+            "r5": 80
+          }
+        }
+      },
+      {
+        "label": "0 stacks",
+        "stats": {
+          "eleMas": {
+            "r1": 0,
+            "r5": 0
+          }
+        }
+      }
+    ]
+  },
+  "IronSting": {
+    "note": "All DMG +6% per stack, max 2.",
+    "options": [
+      {
+        "label": "2 stacks (max)",
+        "damage": {
+          "dmg_": {
+            "r1": 0.12,
+            "r5": 0.24
+          }
+        }
+      },
+      {
+        "label": "1 stack",
+        "damage": {
+          "dmg_": {
+            "r1": 0.06,
+            "r5": 0.12
+          }
+        }
+      },
+      {
+        "label": "0 stacks",
+        "damage": {
+          "dmg_": {
+            "r1": 0,
+            "r5": 0
+          }
+        }
+      }
+    ]
+  },
+  "JadefallsSplendor": {
+    "note": "Elemental DMG +0.3% per 1,000 Max HP, max 12%. Modeled as an HP conversion.",
+    "conversions": [
+      {
+        "from": "hp",
+        "to": "dmg_",
+        "ratio": 0.000003,
+        "cap": 0.12,
+        "note": "Jadefall HP-to-DMG"
+      }
+    ],
+    "always": true
+  },
+  "KagurasVerity": {
+    "note": "Skill DMG +12% per Kagura Dance stack, max 3. At 3 stacks, also gains All Elemental DMG +12%.",
+    "options": [
+      {
+        "label": "3 stacks (max)",
+        "damage": {
+          "skill_dmg_": {
+            "r1": 0.36,
+            "r5": 0.72
+          },
+          "dmg_": {
+            "r1": 0.12,
+            "r5": 0.24
+          }
+        }
+      },
+      {
+        "label": "2 stacks",
+        "damage": {
+          "skill_dmg_": {
+            "r1": 0.24,
+            "r5": 0.48
+          }
+        }
+      },
+      {
+        "label": "1 stack",
+        "damage": {
+          "skill_dmg_": {
+            "r1": 0.12,
+            "r5": 0.24
+          }
+        }
+      },
+      {
+        "label": "0 stacks"
+      }
+    ]
+  },
+  "LightOfFoliarIncision": {
+    "note": "CRIT Rate +4% to +8% by refinement. The EM-scaling NA/Skill DMG is not modeled.",
+    "stats": {
+      "critRate_": [
+        0.04,
+        0.05,
+        0.06,
+        0.07,
+        0.08
+      ]
+    },
+    "always": true
+  },
+  "LightbearingMoonshard": {
+    "note": "DEF +20% is always active. Lunar-Crystallize DMG +64% for 5s after using an Elemental Skill is conditional.",
+    "always": {
+      "stats": {
+        "def_": [
+          0.2,
+          0.25,
+          0.3,
+          0.35,
+          0.4
+        ]
+      }
+    },
+    "damage": {
+      "lunar_dmg_": {
+        "r1": 0.64,
+        "r5": 1.28
+      }
+    }
+  },
+  "LostPrayerToTheSacredWinds": {
+    "note": "Elemental DMG +8% per stack, max 4.",
+    "options": [
+      {
+        "label": "4 stacks (max)",
+        "damage": {
+          "dmg_": {
+            "r1": 0.32,
+            "r5": 0.64
+          }
+        }
+      },
+      {
+        "label": "3 stacks",
+        "damage": {
+          "dmg_": {
+            "r1": 0.24,
+            "r5": 0.48
+          }
+        }
+      },
+      {
+        "label": "2 stacks",
+        "damage": {
+          "dmg_": {
+            "r1": 0.16,
+            "r5": 0.32
+          }
+        }
+      },
+      {
+        "label": "1 stack",
+        "damage": {
+          "dmg_": {
+            "r1": 0.08,
+            "r5": 0.16
+          }
+        }
+      },
+      {
+        "label": "0 stacks",
+        "damage": {
+          "dmg_": {
+            "r1": 0,
+            "r5": 0
+          }
+        }
+      }
+    ]
+  },
+  "MailedFlower": {
+    "note": "ATK +24% and EM +96 after Skill/reaction. Modeled as active.",
+    "stats": {
+      "atk_": {
+        "r1": 0.12,
+        "r5": 0.24
+      },
+      "eleMas": {
+        "r1": 48,
+        "r5": 96
+      }
+    }
+  },
+  "MakhairaAquamarine": {
+    "note": "ATK bonus equal to 24% of EM. Modeled as an EM conversion.",
+    "conversions": [
+      {
+        "from": "eleMas",
+        "to": "atk",
+        "ratio": {
+          "r1": 0.24,
+          "r5": 0.48
+        },
+        "note": "Makhaira EM-to-ATK"
+      }
+    ],
+    "always": true
+  },
+  "MappaMare": {
+    "note": "Elemental DMG +8% per stack, max 2.",
+    "options": [
+      {
+        "label": "2 stacks (max)",
+        "damage": {
+          "dmg_": {
+            "r1": 0.16,
+            "r5": 0.32
+          }
+        }
+      },
+      {
+        "label": "1 stack",
+        "damage": {
+          "dmg_": {
+            "r1": 0.08,
+            "r5": 0.16
+          }
+        }
+      },
+      {
+        "label": "0 stacks",
+        "damage": {
+          "dmg_": {
+            "r1": 0,
+            "r5": 0
+          }
+        }
+      }
+    ]
+  },
+  "MissiveWindspear": {
+    "note": "ATK +24% and EM +96 after a reaction. Modeled as active.",
+    "stats": {
+      "atk_": {
+        "r1": 0.12,
+        "r5": 0.24
+      },
+      "eleMas": {
+        "r1": 48,
+        "r5": 96
+      }
+    }
+  },
+  "Moonpiercer": {
+    "note": "ATK +16% after a reaction. Modeled as active.",
+    "stats": {
+      "atk_": {
+        "r1": 0.08,
+        "r5": 0.16
+      }
+    }
+  },
+  "NocturnesCurtainCall": {
+    "note": "Max HP +10% is always active. After a Lunar reaction, Max HP increases by another 14% and Lunar Reaction CRIT DMG by 60%.",
+    "always": {
+      "stats": {
+        "hp_": [
+          0.1,
+          0.12,
+          0.14,
+          0.16,
+          0.18
+        ]
+      }
+    },
+    "stats": {
+      "hp_": [
+        0.14,
+        0.16,
+        0.18,
+        0.2,
+        0.22
+      ]
+    },
+    "damage": {
+      "lunar_critDMG_": {
+        "r1": 0.6,
+        "r5": 1.4
+      }
+    }
+  },
+  "OathswornEye": {
+    "note": "Energy Recharge +48% for 10s after Skill. Modeled as active.",
+    "stats": {
+      "enerRech_": {
+        "r1": 0.24,
+        "r5": 0.48
+      }
+    }
+  },
+  "PeakPatrolSong": {
+    "note": "DEF +8% and All Elemental DMG +10% per Ode to Flowers stack, max 2. Party DMG from DEF is not modeled.",
+    "options": [
+      {
+        "label": "2 stacks (max)",
+        "stats": {
+          "def_": {
+            "r1": 0.16,
+            "r5": 0.32
+          }
+        },
+        "damage": {
+          "dmg_": {
+            "r1": 0.2,
+            "r5": 0.4
+          }
+        }
+      },
+      {
+        "label": "1 stack",
+        "stats": {
+          "def_": {
+            "r1": 0.08,
+            "r5": 0.16
+          }
+        },
+        "damage": {
+          "dmg_": {
+            "r1": 0.1,
+            "r5": 0.2
+          }
+        }
+      },
+      {
+        "label": "0 stacks"
+      }
+    ]
+  },
+  "PrimordialJadeCutter": {
+    "note": "HP +20% and ATK +1.2% of Max HP.",
+    "stats": {
+      "hp_": [
+        0.2,
+        0.25,
+        0.3,
+        0.35,
+        0.4
+      ]
+    },
+    "conversions": [
+      {
+        "from": "hp",
+        "to": "atk",
+        "ratio": 0.012,
+        "note": "Jade Cutter HP-to-ATK"
+      }
+    ],
+    "always": true
+  },
+  "PrototypeCrescent": {
+    "note": "ATK +36% after a weak-point Charged Attack. Modeled as active.",
+    "stats": {
+      "atk_": {
+        "r1": 0.36,
+        "r5": 0.72
+      }
+    }
+  },
+  "RainbowSerpentsRainBow": {
+    "note": "ATK +56% for 8s after off-field hits. Modeled as active.",
+    "stats": {
+      "atk_": {
+        "r1": 0.28,
+        "r5": 0.56
+      }
+    }
+  },
+  "ReliquaryOfTruth": {
+    "note": "CRIT Rate +8% is always active. After Skill, EM +80; after Lunar-Bloom, CRIT DMG +24%; when both are active, both are increased by 50%.",
+    "always": {
+      "stats": {
+        "critRate_": [
+          0.08,
+          0.1,
+          0.12,
+          0.14,
+          0.16
+        ]
+      }
+    },
+    "options": [
+      {
+        "label": "Both active (+50%)",
+        "stats": {
+          "eleMas": {
+            "r1": 120,
+            "r5": 240
+          }
+        },
+        "damage": {
+          "critDMG_": {
+            "r1": 0.36,
+            "r5": 0.72
+          }
+        }
+      },
+      {
+        "label": "Skill only (EM)",
+        "stats": {
+          "eleMas": {
+            "r1": 80,
+            "r5": 160
+          }
+        }
+      },
+      {
+        "label": "Lunar-Bloom only (CRIT DMG)",
+        "damage": {
+          "critDMG_": {
+            "r1": 0.24,
+            "r5": 0.48
+          }
+        }
+      },
+      {
+        "label": "Neither"
+      }
+    ]
+  },
+  "RingOfYaxche": {
+    "note": "NA DMG +0.6% per 1,000 Max HP, max 16%. Modeled as an HP conversion.",
+    "conversions": [
+      {
+        "from": "hp",
+        "to": "na_dmg_",
+        "ratio": 0.000006,
+        "cap": 0.16,
+        "note": "Ring of Yaxche HP-to-NA-DMG"
+      }
+    ],
+    "always": true
+  },
+  "RoyalGreatsword": {
+    "note": "CRIT Rate +8% per stack, max 5. A CRIT Hit removes all stacks.",
+    "options": [
+      {
+        "label": "5 stacks (max)",
+        "stats": {
+          "critRate_": {
+            "r1": 0.4,
+            "r5": 0.8
+          }
+        }
+      },
+      {
+        "label": "4 stacks",
+        "stats": {
+          "critRate_": {
+            "r1": 0.32,
+            "r5": 0.64
+          }
+        }
+      },
+      {
+        "label": "3 stacks",
+        "stats": {
+          "critRate_": {
+            "r1": 0.24,
+            "r5": 0.48
+          }
+        }
+      },
+      {
+        "label": "2 stacks",
+        "stats": {
+          "critRate_": {
+            "r1": 0.16,
+            "r5": 0.32
+          }
+        }
+      },
+      {
+        "label": "1 stack",
+        "stats": {
+          "critRate_": {
+            "r1": 0.08,
+            "r5": 0.16
+          }
+        }
+      },
+      {
+        "label": "0 stacks",
+        "stats": {
+          "critRate_": {
+            "r1": 0,
+            "r5": 0
+          }
+        }
+      }
+    ]
+  },
+  "SerpentSpine": {
+    "note": "DMG +6% per stack, max 5. Increased damage taken is not modeled.",
+    "options": [
+      {
+        "label": "5 stacks (max)",
+        "damage": {
+          "dmg_": {
+            "r1": 0.3,
+            "r5": 0.5
+          }
+        }
+      },
+      {
+        "label": "4 stacks",
+        "damage": {
+          "dmg_": {
+            "r1": 0.24,
+            "r5": 0.4
+          }
+        }
+      },
+      {
+        "label": "3 stacks",
+        "damage": {
+          "dmg_": {
+            "r1": 0.18,
+            "r5": 0.3
+          }
+        }
+      },
+      {
+        "label": "2 stacks",
+        "damage": {
+          "dmg_": {
+            "r1": 0.12,
+            "r5": 0.2
+          }
+        }
+      },
+      {
+        "label": "1 stack",
+        "damage": {
+          "dmg_": {
+            "r1": 0.06,
+            "r5": 0.1
+          }
+        }
+      },
+      {
+        "label": "0 stacks",
+        "damage": {
+          "dmg_": {
+            "r1": 0,
+            "r5": 0
+          }
+        }
+      }
+    ]
+  },
+  "SkywardAtlas": {
+    "note": "Elemental DMG +18%. The cloud proc is not modeled.",
+    "damage": {
+      "dmg_": {
+        "r1": 0.12,
+        "r5": 0.24
+      }
+    },
+    "always": true
+  },
+  "SongOfBrokenPines": {
+    "note": "ATK +16% is always active. After 4 Sigils, the party ATK bonus is conditional.",
+    "always": {
+      "stats": {
+        "atk_": {
+          "r1": 0.16,
+          "r5": 0.32
+        }
+      }
+    },
+    "stats": {
+      "atk_": {
+        "r1": 0.2,
+        "r5": 0.4
+      }
+    }
+  },
+  "SongOfStillness": {
+    "note": "DMG +16% after being healed. Modeled as active.",
+    "damage": {
+      "dmg_": {
+        "r1": 0.1,
+        "r5": 0.2
+      }
+    }
+  },
+  "SplendorOfTranquilWaters": {
+    "note": "HP +14% per stack (max 2, from party HP changes) and Skill DMG +8% per stack (max 3, from the wielder’s HP changes). Their stacks are independent.",
+    "options": [
+      {
+        "label": "Skill 3 / HP 2 (max)",
+        "stats": {
+          "hp_": {
+            "r1": 0.28,
+            "r5": 0.56
+          }
+        },
+        "damage": {
+          "skill_dmg_": {
+            "r1": 0.24,
+            "r5": 0.48
+          }
+        }
+      },
+      {
+        "label": "Skill 3 / HP 1",
+        "stats": {
+          "hp_": {
+            "r1": 0.14,
+            "r5": 0.28
+          }
+        },
+        "damage": {
+          "skill_dmg_": {
+            "r1": 0.24,
+            "r5": 0.48
+          }
+        }
+      },
+      {
+        "label": "Skill 3 / HP 0",
+        "damage": {
+          "skill_dmg_": {
+            "r1": 0.24,
+            "r5": 0.48
+          }
+        }
+      },
+      {
+        "label": "Skill 2 / HP 2",
+        "stats": {
+          "hp_": {
+            "r1": 0.28,
+            "r5": 0.56
+          }
+        },
+        "damage": {
+          "skill_dmg_": {
+            "r1": 0.16,
+            "r5": 0.32
+          }
+        }
+      },
+      {
+        "label": "Skill 2 / HP 1",
+        "stats": {
+          "hp_": {
+            "r1": 0.14,
+            "r5": 0.28
+          }
+        },
+        "damage": {
+          "skill_dmg_": {
+            "r1": 0.16,
+            "r5": 0.32
+          }
+        }
+      },
+      {
+        "label": "Skill 2 / HP 0",
+        "damage": {
+          "skill_dmg_": {
+            "r1": 0.16,
+            "r5": 0.32
+          }
+        }
+      },
+      {
+        "label": "Skill 1 / HP 2",
+        "stats": {
+          "hp_": {
+            "r1": 0.28,
+            "r5": 0.56
+          }
+        },
+        "damage": {
+          "skill_dmg_": {
+            "r1": 0.08,
+            "r5": 0.16
+          }
+        }
+      },
+      {
+        "label": "Skill 1 / HP 1",
+        "stats": {
+          "hp_": {
+            "r1": 0.14,
+            "r5": 0.28
+          }
+        },
+        "damage": {
+          "skill_dmg_": {
+            "r1": 0.08,
+            "r5": 0.16
+          }
+        }
+      },
+      {
+        "label": "Skill 1 / HP 0",
+        "damage": {
+          "skill_dmg_": {
+            "r1": 0.08,
+            "r5": 0.16
+          }
+        }
+      },
+      {
+        "label": "Skill 0 / HP 2",
+        "stats": {
+          "hp_": {
+            "r1": 0.28,
+            "r5": 0.56
+          }
+        }
+      },
+      {
+        "label": "Skill 0 / HP 1",
+        "stats": {
+          "hp_": {
+            "r1": 0.14,
+            "r5": 0.28
+          }
+        }
+      },
+      {
+        "label": "No stacks"
+      }
+    ]
+  },
+  "StaffOfHoma": {
+    "note": "HP +20% and ATK +0.8% of Max HP are always active. Below 50% HP, the ATK bonus increases by an additional 1%.",
+    "always": {
+      "stats": {
+        "hp_": [
+          0.2,
+          0.25,
+          0.3,
+          0.35,
+          0.4
+        ]
+      },
+      "conversions": [
+        {
+          "from": "hp",
+          "to": "atk",
+          "ratio": {
+            "r1": 0.008,
+            "r5": 0.016
+          },
+          "note": "Homa HP-to-ATK"
+        }
+      ]
+    },
+    "options": [
+      {
+        "label": "HP above 50%",
+        "conversions": []
+      },
+      {
+        "label": "HP below 50% (+1% Max HP ATK)",
+        "conversions": [
+          {
+            "from": "hp",
+            "to": "atk",
+            "ratio": {
+              "r1": 0.01,
+              "r5": 0.018
+            },
+            "note": "Homa low-HP extra"
+          }
+        ]
+      }
+    ]
+  },
+  "SummitShaper": {
+    "note": "Shield Strength +20% is always active. ATK increases by 4% per stack (max 5); while shielded, the ATK increase is doubled.",
+    "always": {
+      "stats": {
+        "shield_": [
+          0.2,
+          0.25,
+          0.3,
+          0.35,
+          0.4
+        ]
+      }
+    },
+    "options": [
+      {
+        "label": "5 stacks (max, unshielded)",
+        "stats": {
+          "atk_": {
+            "r1": 0.2,
+            "r5": 0.4
+          }
+        }
+      },
+      {
+        "label": "4 stacks",
+        "stats": {
+          "atk_": {
+            "r1": 0.16,
+            "r5": 0.32
+          }
+        }
+      },
+      {
+        "label": "3 stacks",
+        "stats": {
+          "atk_": {
+            "r1": 0.12,
+            "r5": 0.24
+          }
+        }
+      },
+      {
+        "label": "2 stacks",
+        "stats": {
+          "atk_": {
+            "r1": 0.08,
+            "r5": 0.16
+          }
+        }
+      },
+      {
+        "label": "1 stack",
+        "stats": {
+          "atk_": {
+            "r1": 0.04,
+            "r5": 0.08
+          }
+        }
+      },
+      {
+        "label": "0 stacks",
+        "stats": {
+          "atk_": {
+            "r1": 0,
+            "r5": 0
+          }
+        }
+      },
+      {
+        "label": "5 stacks (max, shielded)",
+        "stats": {
+          "atk_": {
+            "r1": 0.4,
+            "r5": 0.8
+          }
+        }
+      }
+    ]
+  },
+  "TalkingStick": {
+    "note": "Choose the aura element.",
+    "options": [
+      {
+        "label": "Pyro (ATK +32%)",
+        "stats": {
+          "atk_": {
+            "r1": 0.16,
+            "r5": 0.32
+          }
+        }
+      },
+      {
+        "label": "Hydro/Cryo/Electro/Dendro (DMG +24%)",
+        "damage": {
+          "dmg_": {
+            "r1": 0.12,
+            "r5": 0.24
+          }
+        }
+      }
+    ]
+  },
+  "TamayurateiNoOhanashi": {
+    "note": "ATK +40% after Skill. Modeled as active.",
+    "stats": {
+      "atk_": {
+        "r1": 0.2,
+        "r5": 0.4
+      }
+    }
+  },
+  "TheBlackSword": {
+    "note": "NA/CA DMG +40%. Modeled as a typed damage bonus.",
+    "damage": {
+      "na_dmg_": {
+        "r1": 0.2,
+        "r5": 0.4
+      }
+    },
+    "always": true
+  },
+  "TheDockhandsAssistant": {
+    "note": "EM +40 per Symbol, max 3.",
+    "options": [
+      {
+        "label": "3 stacks (max)",
+        "stats": {
+          "eleMas": {
+            "r1": 120,
+            "r5": 240
+          }
+        }
+      },
+      {
+        "label": "2 stacks",
+        "stats": {
+          "eleMas": {
+            "r1": 80,
+            "r5": 160
+          }
+        }
+      },
+      {
+        "label": "1 stack",
+        "stats": {
+          "eleMas": {
+            "r1": 40,
+            "r5": 80
+          }
+        }
+      },
+      {
+        "label": "0 stacks",
+        "stats": {
+          "eleMas": {
+            "r1": 0,
+            "r5": 0
+          }
+        }
+      }
+    ]
+  },
+  "TheStringless": {
+    "note": "Skill and Burst DMG +48%. Modeled as typed damage bonuses.",
+    "damage": {
+      "skill_dmg_": {
+        "r1": 0.24,
+        "r5": 0.48
+      },
+      "burst_dmg_": {
+        "r1": 0.24,
+        "r5": 0.48
+      }
+    },
+    "always": true
+  },
+  "TheWidsith": {
+    "note": "Random refrain on taking the field. Choose which one to model.",
+    "options": [
+      {
+        "label": "Recitative (ATK +120%)",
+        "stats": {
+          "atk_": {
+            "r1": 0.6,
+            "r5": 1.2
+          }
+        }
+      },
+      {
+        "label": "Aria (Elemental DMG +96%)",
+        "damage": {
+          "dmg_": {
+            "r1": 0.48,
+            "r5": 0.96
+          }
+        }
+      },
+      {
+        "label": "Interlude (EM +480)",
+        "stats": {
+          "eleMas": {
+            "r1": 240,
+            "r5": 480
+          }
+        }
+      }
+    ]
+  },
+  "ThunderingPulse": {
+    "note": "ATK +20% is always active. Normal Attack DMG gains 1-3 stacks, each with an independent duration.",
+    "always": {
+      "stats": {
+        "atk_": [
+          0.2,
+          0.25,
+          0.3,
+          0.35,
+          0.4
+        ]
+      }
+    },
+    "options": [
+      {
+        "label": "3 stacks (max)",
+        "damage": {
+          "na_dmg_": {
+            "r1": 0.4,
+            "r5": 0.8
+          }
+        }
+      },
+      {
+        "label": "2 stacks",
+        "damage": {
+          "na_dmg_": {
+            "r1": 0.24,
+            "r5": 0.48
+          }
+        }
+      },
+      {
+        "label": "1 stack",
+        "damage": {
+          "na_dmg_": {
+            "r1": 0.12,
+            "r5": 0.24
+          }
+        }
+      },
+      {
+        "label": "0 stacks",
+        "damage": {}
+      }
+    ]
+  },
+  "TomeOfTheEternalFlow": {
+    "note": "HP +16% is always active. Charged Attack DMG gains 1-3 stacks from HP changes.",
+    "always": {
+      "stats": {
+        "hp_": [
+          0.16,
+          0.2,
+          0.24,
+          0.28,
+          0.32
+        ]
+      }
+    },
+    "options": [
+      {
+        "label": "3 stacks (max)",
+        "damage": {
+          "ca_dmg_": {
+            "r1": 0.42,
+            "r5": 0.9
+          }
+        }
+      },
+      {
+        "label": "2 stacks",
+        "damage": {
+          "ca_dmg_": {
+            "r1": 0.28,
+            "r5": 0.6
+          }
+        }
+      },
+      {
+        "label": "1 stack",
+        "damage": {
+          "ca_dmg_": {
+            "r1": 0.14,
+            "r5": 0.3
+          }
+        }
+      },
+      {
+        "label": "0 stacks",
+        "damage": {}
+      }
+    ]
+  },
+  "ToukabouShigure": {
+    "note": "DMG +32% to the Cursed Parasol target. Modeled as active.",
+    "damage": {
+      "dmg_": {
+        "r1": 0.16,
+        "r5": 0.32
+      }
+    }
+  },
+  "VividNotions": {
+    "note": "ATK +28% is always active. Plunging Attack CRIT DMG can gain two independent 15s buffs: Dawn's First Hue (+28%) and Twilight's Splendor (+40%). They stack.",
+    "always": {
+      "stats": {
+        "atk_": [
+          0.28,
+          0.35,
+          0.42,
+          0.49,
+          0.56
+        ]
+      }
+    },
+    "options": [
+      {
+        "label": "Both buffs (max)",
+        "damage": {
+          "plunge_critDMG_": {
+            "r1": 0.68,
+            "r5": 1.36
+          }
+        }
+      },
+      {
+        "label": "Dawn's First Hue only",
+        "damage": {
+          "plunge_critDMG_": {
+            "r1": 0.28,
+            "r5": 0.56
+          }
+        }
+      },
+      {
+        "label": "Twilight's Splendor only",
+        "damage": {
+          "plunge_critDMG_": {
+            "r1": 0.4,
+            "r5": 0.8
+          }
+        }
+      },
+      {
+        "label": "Neither",
+        "damage": {}
+      }
+    ]
+  },
+  "VortexVanquisher": {
+    "note": "Shield Strength +20% is always active. ATK increases by 4% per stack (max 5); while shielded, the ATK increase is doubled.",
+    "always": {
+      "stats": {
+        "shield_": [
+          0.2,
+          0.25,
+          0.3,
+          0.35,
+          0.4
+        ]
+      }
+    },
+    "options": [
+      {
+        "label": "5 stacks (max, unshielded)",
+        "stats": {
+          "atk_": {
+            "r1": 0.2,
+            "r5": 0.4
+          }
+        }
+      },
+      {
+        "label": "4 stacks",
+        "stats": {
+          "atk_": {
+            "r1": 0.16,
+            "r5": 0.32
+          }
+        }
+      },
+      {
+        "label": "3 stacks",
+        "stats": {
+          "atk_": {
+            "r1": 0.12,
+            "r5": 0.24
+          }
+        }
+      },
+      {
+        "label": "2 stacks",
+        "stats": {
+          "atk_": {
+            "r1": 0.08,
+            "r5": 0.16
+          }
+        }
+      },
+      {
+        "label": "1 stack",
+        "stats": {
+          "atk_": {
+            "r1": 0.04,
+            "r5": 0.08
+          }
+        }
+      },
+      {
+        "label": "0 stacks",
+        "stats": {
+          "atk_": {
+            "r1": 0,
+            "r5": 0
+          }
+        }
+      },
+      {
+        "label": "5 stacks (max, shielded)",
+        "stats": {
+          "atk_": {
+            "r1": 0.4,
+            "r5": 0.8
+          }
+        }
+      }
+    ]
+  },
+  "WanderingEvenstar": {
+    "note": "ATK bonus equal to 30% of EM. Modeled as an EM conversion.",
+    "conversions": [
+      {
+        "from": "eleMas",
+        "to": "atk",
+        "ratio": {
+          "r1": 0.24,
+          "r5": 0.48
+        },
+        "note": "Evenstar EM-to-ATK"
+      }
+    ],
+    "always": true
+  },
+  "Whiteblind": {
+    "note": "ATK and DEF +6% per stack, max 4.",
+    "options": [
+      {
+        "label": "4 stacks (max)",
+        "stats": {
+          "atk_": {
+            "r1": 0.24,
+            "r5": 0.48
+          },
+          "def_": {
+            "r1": 0.24,
+            "r5": 0.48
+          }
+        }
+      },
+      {
+        "label": "3 stacks",
+        "stats": {
+          "atk_": {
+            "r1": 0.18,
+            "r5": 0.36
+          },
+          "def_": {
+            "r1": 0.18,
+            "r5": 0.36
+          }
+        }
+      },
+      {
+        "label": "2 stacks",
+        "stats": {
+          "atk_": {
+            "r1": 0.12,
+            "r5": 0.24
+          },
+          "def_": {
+            "r1": 0.12,
+            "r5": 0.24
+          }
+        }
+      },
+      {
+        "label": "1 stack",
+        "stats": {
+          "atk_": {
+            "r1": 0.06,
+            "r5": 0.12
+          },
+          "def_": {
+            "r1": 0.06,
+            "r5": 0.12
+          }
+        }
+      },
+      {
+        "label": "0 stacks",
+        "stats": {
+          "atk_": {
+            "r1": 0,
+            "r5": 0
+          },
+          "def_": {
+            "r1": 0,
+            "r5": 0
+          }
+        }
+      }
+    ]
+  },
+  "WindblumeOde": {
+    "note": "ATK +32% after Skill. Modeled as active.",
+    "stats": {
+      "atk_": {
+        "r1": 0.16,
+        "r5": 0.32
+      }
+    }
+  },
+  "WolfFang": {
+    "note": "Skill/Burst DMG and typed CRIT Rate. Typed CRIT Rate is shown separately and does not change general CRIT Rate targets.",
+    "damage": {
+      "skill_dmg_": {
+        "r1": 0.16,
+        "r5": 0.32
+      },
+      "burst_dmg_": {
+        "r1": 0.16,
+        "r5": 0.32
+      },
+      "skill_critRate_": {
+        "r1": 0.08,
+        "r5": 0.16
+      },
+      "burst_critRate_": {
+        "r1": 0.08,
+        "r5": 0.16
+      }
+    },
+    "always": true
+  },
+  "WolfsGravestone": {
+    "note": "ATK +30%. The low-HP enemy party ATK buff is not modeled.",
+    "stats": {
+      "atk_": [
+        0.2,
+        0.25,
+        0.3,
+        0.35,
+        0.4
+      ]
+    },
+    "always": true
+  },
+  "ExaiphanesBlade": {
+    "note": "Traveler only: ATK +16% after hitting an opponent. Modeled as active.",
+    "stats": {
+      "atk_": {
+        "r1": 0.16,
+        "r5": 0.32
+      }
+    }
+  },
+  "TheCatch": {
+    "note": "Burst DMG +32% and Burst CRIT Rate +12%. Typed CRIT Rate is shown separately.",
+    "damage": {
+      "burst_dmg_": {
+        "r1": 0.16,
+        "r5": 0.32
+      },
+      "burst_critRate_": {
+        "r1": 0.06,
+        "r5": 0.12
+      }
+    },
+    "always": true
+  },
+  "FesteringDesire": {
+    "note": "Skill DMG +32% and Skill CRIT Rate +12%. Typed CRIT Rate is shown separately.",
+    "damage": {
+      "skill_dmg_": {
+        "r1": 0.16,
+        "r5": 0.32
+      },
+      "skill_critRate_": {
+        "r1": 0.06,
+        "r5": 0.12
+      }
+    },
+    "always": true
+  },
+  "LuxuriousSeaLord": {
+    "note": "Burst DMG +24%. The tuna proc is not modeled.",
+    "damage": {
+      "burst_dmg_": {
+        "r1": 0.12,
+        "r5": 0.24
+      }
+    },
+    "always": true
+  },
+  "KatsuragikiriNagamasa": {
+    "note": "Skill DMG +6%. The energy effect is not modeled.",
+    "damage": {
+      "skill_dmg_": {
+        "r1": 0.06,
+        "r5": 0.12
+      }
+    },
+    "always": true
+  },
+  "KitainCrossSpear": {
+    "note": "Skill DMG +6%. The energy effect is not modeled.",
+    "damage": {
+      "skill_dmg_": {
+        "r1": 0.06,
+        "r5": 0.12
+      }
+    },
+    "always": true
+  },
+  "PrototypeStarglitter": {
+    "note": "NA/CA DMG +8% per stack, max 2.",
+    "options": [
+      {
+        "label": "2 stacks (max)",
+        "damage": {
+          "na_dmg_": {
+            "r1": 0.16,
+            "r5": 0.32
+          },
+          "ca_dmg_": {
+            "r1": 0.16,
+            "r5": 0.32
+          }
+        }
+      },
+      {
+        "label": "1 stack",
+        "damage": {
+          "na_dmg_": {
+            "r1": 0.08,
+            "r5": 0.16
+          },
+          "ca_dmg_": {
+            "r1": 0.08,
+            "r5": 0.16
+          }
+        }
+      },
+      {
+        "label": "0 stacks",
+        "damage": {
+          "na_dmg_": {
+            "r1": 0,
+            "r5": 0
+          },
+          "ca_dmg_": {
+            "r1": 0,
+            "r5": 0
+          }
+        }
+      }
+    ]
+  },
+  "BalladOfTheBoundlessBlue": {
+    "note": "NA DMG +16% and CA DMG +12% per stack, max 3.",
+    "options": [
+      {
+        "label": "3 stacks (max)",
+        "damage": {
+          "na_dmg_": {
+            "r1": 0.24,
+            "r5": 0.48
+          },
+          "ca_dmg_": {
+            "r1": 0.18,
+            "r5": 0.36
+          }
+        }
+      },
+      {
+        "label": "2 stacks",
+        "damage": {
+          "na_dmg_": {
+            "r1": 0.16,
+            "r5": 0.32
+          },
+          "ca_dmg_": {
+            "r1": 0.12,
+            "r5": 0.24
+          }
+        }
+      },
+      {
+        "label": "1 stack",
+        "damage": {
+          "na_dmg_": {
+            "r1": 0.08,
+            "r5": 0.16
+          },
+          "ca_dmg_": {
+            "r1": 0.06,
+            "r5": 0.12
+          }
+        }
+      },
+      {
+        "label": "0 stacks",
+        "damage": {
+          "na_dmg_": {
+            "r1": 0,
+            "r5": 0
+          },
+          "ca_dmg_": {
+            "r1": 0,
+            "r5": 0
+          }
+        }
+      }
+    ]
+  },
+  "SwordOfDescension": {
+    "note": "Traveler only: flat ATK +66.",
+    "stats": {
+      "atk": 66
+    },
+    "always": true
+  },
+  "AmenomaKageuchi": {
+    "note": "Energy regeneration only; no stat-sheet effect.",
+    "stats": {}
+  },
+  "SacrificialBow": {
+    "note": "Skill cooldown reset only; no stat-sheet effect.",
+    "stats": {}
+  },
+  "SacrificialFragments": {
+    "note": "Skill cooldown reset only; no stat-sheet effect.",
+    "stats": {}
+  },
+  "SacrificialJade": {
+    "note": "Off-field for more than 5s: Max HP +32/40/48/56/64% and Elemental Mastery +40/50/60/70/80. Canceled after 10s on field.",
+    "stats": {
+      "hp_": [
+        0.32,
+        0.4,
+        0.48,
+        0.56,
+        0.64
+      ],
+      "eleMas": [
+        40,
+        50,
+        60,
+        70,
+        80
+      ]
+    }
+  },
+  "SacrificialGreatsword": {
+    "note": "Skill cooldown reset only; no stat-sheet effect.",
+    "stats": {}
+  },
+  "SacrificialSword": {
+    "note": "Skill cooldown reset only; no stat-sheet effect.",
+    "stats": {}
+  },
+  "FavoniusCodex": {
+    "note": "Energy generation only; no stat-sheet effect.",
+    "stats": {}
+  },
+  "FavoniusGreatsword": {
+    "note": "Energy generation only; no stat-sheet effect.",
+    "stats": {}
+  },
+  "FavoniusLance": {
+    "note": "Energy generation only; no stat-sheet effect.",
+    "stats": {}
+  },
+  "FavoniusSword": {
+    "note": "Energy generation only; no stat-sheet effect.",
+    "stats": {}
+  },
+  "FavoniusWarbow": {
+    "note": "Energy generation only; no stat-sheet effect.",
+    "stats": {}
+  },
+  "WhiteIronGreatsword": {
+    "note": "Healing on defeat only; no stat-sheet effect.",
+    "stats": {}
+  },
+  "ThrillingTalesOfDragonSlayers": {
+    "note": "Buffs the next character, not the wielder; no self stat effect.",
+    "stats": {}
+  }
+}

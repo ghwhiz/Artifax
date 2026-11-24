@@ -1,0 +1,569 @@
+{
+  "blizzardstrayer": {
+    "note": "4pc: +20% CRIT Rate vs Cryo-affected, +40% vs Frozen.",
+    "options": [
+      {
+        "label": "Frozen (+40% CR)",
+        "stats": {
+          "critRate_": 0.4
+        }
+      },
+      {
+        "label": "Cryo-affected (+20% CR)",
+        "stats": {
+          "critRate_": 0.2
+        }
+      },
+      {
+        "label": "No Cryo/Frozen",
+        "stats": {}
+      }
+    ]
+  },
+  "marechausseehunter": {
+    "note": "4pc: +12% CRIT Rate per stack, max 3.",
+    "options": [
+      {
+        "label": "3 stacks (+36% CR)",
+        "stats": {
+          "critRate_": 0.36
+        }
+      },
+      {
+        "label": "2 stacks (+24% CR)",
+        "stats": {
+          "critRate_": 0.24
+        }
+      },
+      {
+        "label": "1 stack (+12% CR)",
+        "stats": {
+          "critRate_": 0.12
+        }
+      },
+      {
+        "label": "0 stacks",
+        "stats": {}
+      }
+    ]
+  },
+  "obsidiancodex": {
+    "note": "4pc: +40% CRIT Rate for 6s after consuming Nightsoul.",
+    "options": [
+      {
+        "label": "Nightsoul (+40% CR)",
+        "stats": {
+          "critRate_": 0.4
+        }
+      },
+      {
+        "label": "No Nightsoul",
+        "stats": {}
+      }
+    ]
+  },
+  "huskofopulentdreams": {
+    "note": "4pc: +6% DEF and +6% Geo DMG per Curiosity stack, max 4.",
+    "options": [
+      {
+        "label": "4 stacks",
+        "stats": {
+          "def_": 0.24,
+          "geo_dmg_": 0.24
+        }
+      },
+      {
+        "label": "3 stacks",
+        "stats": {
+          "def_": 0.18,
+          "geo_dmg_": 0.18
+        }
+      },
+      {
+        "label": "2 stacks",
+        "stats": {
+          "def_": 0.12,
+          "geo_dmg_": 0.12
+        }
+      },
+      {
+        "label": "1 stack",
+        "stats": {
+          "def_": 0.06,
+          "geo_dmg_": 0.06
+        }
+      },
+      {
+        "label": "0 stacks",
+        "stats": {}
+      }
+    ]
+  },
+  "vermillionhereafter": {
+    "note": "4pc: ATK +8% after Burst, +10% per HP loss (max 4).",
+    "options": [
+      {
+        "label": "4 stacks (+48% ATK)",
+        "stats": {
+          "atk_": 0.48
+        }
+      },
+      {
+        "label": "3 stacks (+38% ATK)",
+        "stats": {
+          "atk_": 0.38
+        }
+      },
+      {
+        "label": "2 stacks (+28% ATK)",
+        "stats": {
+          "atk_": 0.28
+        }
+      },
+      {
+        "label": "1 stack (+18% ATK)",
+        "stats": {
+          "atk_": 0.18
+        }
+      },
+      {
+        "label": "No stacks",
+        "stats": {}
+      }
+    ]
+  },
+  "nymphsdream": {
+    "note": "4pc: ATK and Hydro DMG increase with Mirrored Nymph stacks.",
+    "options": [
+      {
+        "label": "3 stacks (+25% ATK, +15% Hydro)",
+        "stats": {
+          "atk_": 0.25,
+          "hydro_dmg_": 0.15
+        }
+      },
+      {
+        "label": "2 stacks (+16% ATK, +9% Hydro)",
+        "stats": {
+          "atk_": 0.16,
+          "hydro_dmg_": 0.09
+        }
+      },
+      {
+        "label": "1 stack (+7% ATK, +4% Hydro)",
+        "stats": {
+          "atk_": 0.07,
+          "hydro_dmg_": 0.04
+        }
+      },
+      {
+        "label": "0 stacks",
+        "stats": {}
+      }
+    ]
+  },
+  "fragmentofharmonicwhimsy": {
+    "note": "4pc: +18% DMG per Bond of Life change, max 3.",
+    "options": [
+      {
+        "label": "3 stacks (+54% DMG)",
+        "stats": {
+          "dmg_": 0.54
+        }
+      },
+      {
+        "label": "2 stacks (+36% DMG)",
+        "stats": {
+          "dmg_": 0.36
+        }
+      },
+      {
+        "label": "1 stack (+18% DMG)",
+        "stats": {
+          "dmg_": 0.18
+        }
+      },
+      {
+        "label": "0 stacks",
+        "stats": {}
+      }
+    ]
+  },
+  "paleflame": {
+    "note": "4pc: ATK +9% per Skill hit, max 2; at 2 stacks the 2pc Physical DMG is doubled.",
+    "options": [
+      {
+        "label": "2 stacks (+18% ATK, +25% Physical)",
+        "stats": {
+          "atk_": 0.18,
+          "physical_dmg_": 0.25
+        }
+      },
+      {
+        "label": "1 stack (+9% ATK)",
+        "stats": {
+          "atk_": 0.09
+        }
+      },
+      {
+        "label": "0 stacks",
+        "stats": {}
+      }
+    ]
+  },
+  "adaycarvedfromrisingwinds": {
+    "note": "4pc: ATK +25% after a hit. With Witch's Homework, also CRIT Rate +20%.",
+    "options": [
+      {
+        "label": "ATK +25%, CR +20% (Witch's Homework)",
+        "stats": {
+          "atk_": 0.25,
+          "critRate_": 0.2
+        }
+      },
+      {
+        "label": "ATK +25%",
+        "stats": {
+          "atk_": 0.25
+        }
+      }
+    ]
+  },
+  "nighttimewhispersintheechoingwoods": {
+    "note": "4pc: Geo DMG +20% after Skill; +50% while shielded / near Moondrifts.",
+    "options": [
+      {
+        "label": "Shielded (+50% Geo)",
+        "stats": {
+          "geo_dmg_": 0.5
+        }
+      },
+      {
+        "label": "No shield (+20% Geo)",
+        "stats": {
+          "geo_dmg_": 0.2
+        }
+      }
+    ]
+  },
+  "scarletproof": {
+    "note": "4pc: CRIT Rate +16% for 10s after triggering Stellar Swirl.",
+    "options": [
+      {
+        "label": "After Stellar Swirl (+16% CR)",
+        "stats": {
+          "critRate_": 0.16
+        }
+      },
+      {
+        "label": "No Stellar Swirl",
+        "stats": {}
+      }
+    ]
+  },
+  "heartofthefurnace": {
+    "note": "4pc: ATK +12% for 12s after Stellar Glimmer.",
+    "options": [
+      {
+        "label": "After Stellar Glimmer (+12% ATK)",
+        "stats": {
+          "atk_": 0.12
+        }
+      },
+      {
+        "label": "No Stellar Glimmer",
+        "stats": {}
+      }
+    ]
+  },
+  "disenchantmentindeepshadow": {
+    "note": "4pc: +16% CRIT Rate against Superconduct/Stellar-Conduct targets.",
+    "options": [
+      {
+        "label": "Vs affected target (+16% CR)",
+        "stats": {
+          "critRate_": 0.16
+        }
+      },
+      {
+        "label": "No affected target",
+        "stats": {}
+      }
+    ]
+  },
+  "celestialgift": {
+    "note": "4pc: 20% Elemental DMG to the party; 40% with Hexerei: Secret Rite.",
+    "options": [
+      {
+        "label": "Mortal Hymn (+40% DMG)",
+        "stats": {
+          "dmg_": 0.4
+        }
+      },
+      {
+        "label": "Light's Guidance (+20% DMG)",
+        "stats": {
+          "dmg_": 0.2
+        }
+      }
+    ],
+    "always": true
+  },
+  "nightoftheskysunveiling": {
+    "note": "4pc: CRIT Rate +15% (Nascent Gleam) or +30% (Ascendant Gleam).",
+    "options": [
+      {
+        "label": "Ascendant Gleam (+30% CR)",
+        "stats": {
+          "critRate_": 0.3
+        }
+      },
+      {
+        "label": "Nascent Gleam (+15% CR)",
+        "stats": {
+          "critRate_": 0.15
+        }
+      }
+    ],
+    "always": true
+  },
+  "silkenmoonsserenade": {
+    "note": "4pc: party EM +60 (Nascent Gleam) or +120 (Ascendant Gleam).",
+    "options": [
+      {
+        "label": "Ascendant Gleam (EM +120)",
+        "stats": {
+          "eleMas": 120
+        }
+      },
+      {
+        "label": "Nascent Gleam (EM +60)",
+        "stats": {
+          "eleMas": 60
+        }
+      }
+    ],
+    "always": true
+  },
+  "gildeddreams": {
+    "note": "4pc: ATK +14% per same-element ally, EM +50 per different-element ally.",
+    "options": [
+      {
+        "label": "2 same (+28% ATK)",
+        "stats": {
+          "atk_": 0.28
+        }
+      },
+      {
+        "label": "2 different (+100 EM)",
+        "stats": {
+          "eleMas": 100
+        }
+      },
+      {
+        "label": "1 same, 1 different (+14% ATK, +50 EM)",
+        "stats": {
+          "atk_": 0.14,
+          "eleMas": 50
+        }
+      }
+    ],
+    "always": true
+  },
+  "tenacityofthemillelith": {
+    "note": "4pc: party ATK +20% and Shield Strength +30% after Skill. Modeled as active.",
+    "stats": {
+      "atk_": 0.2,
+      "shield_": 0.3
+    }
+  },
+  "noblesseoblige": {
+    "note": "4pc: party ATK +20% after Burst. Modeled as active.",
+    "stats": {
+      "atk_": 0.2
+    }
+  },
+  "instructor": {
+    "note": "4pc: party EM +120 after a reaction. Modeled as active.",
+    "stats": {
+      "eleMas": 120
+    }
+  },
+  "scrolloftheheroofcindercity": {
+    "note": "4pc: 12% Elemental DMG to the party after a reaction. Modeled as active.",
+    "stats": {
+      "dmg_": 0.12
+    }
+  },
+  "archaicpetra": {
+    "note": "4pc: 35% DMG Bonus for the Crystallize element. Modeled as active.",
+    "stats": {
+      "dmg_": 0.35
+    }
+  },
+  "berserker": {
+    "note": "4pc: +24% CRIT Rate below 70% HP.",
+    "options": [
+      {
+        "label": "Below 70% HP (+24% CR)",
+        "stats": {
+          "critRate_": 0.24
+        }
+      },
+      {
+        "label": "Above 70% HP",
+        "stats": {}
+      }
+    ]
+  },
+  "heartofdepth": {
+    "note": "4pc: NA/CA DMG +30% after Skill. Typed damage only.",
+    "damage": {
+      "na_dmg_": 0.3,
+      "ca_dmg_": 0.3
+    }
+  },
+  "goldentroupe": {
+    "note": "4pc: Skill DMG +25%, +25% more off-field. Typed damage only.",
+    "options": [
+      {
+        "label": "Off-field (+50% Skill DMG)",
+        "damage": {
+          "skill_dmg_": 0.5
+        }
+      },
+      {
+        "label": "On-field (+25% Skill DMG)",
+        "damage": {
+          "skill_dmg_": 0.25
+        }
+      }
+    ]
+  },
+  "shimenawasreminiscence": {
+    "note": "4pc: NA/CA/Plunge DMG +50% at the cost of 15 Energy. Typed damage only.",
+    "damage": {
+      "na_dmg_": 0.5,
+      "ca_dmg_": 0.5,
+      "plunge_dmg_": 0.5
+    }
+  },
+  "gladiatorsfinale": {
+    "note": "4pc: NA DMG +35% for sword/claymore/polearm. Typed damage only.",
+    "damage": {
+      "na_dmg_": 0.35
+    },
+    "always": true
+  },
+  "wandererstroupe": {
+    "note": "4pc: CA DMG +35% for catalyst/bow. Typed damage only.",
+    "damage": {
+      "ca_dmg_": 0.35
+    },
+    "always": true
+  },
+  "desertpavilionchronicle": {
+    "note": "4pc: NA/CA/Plunge DMG +40% after a Charged Attack. Typed damage only.",
+    "damage": {
+      "na_dmg_": 0.4,
+      "ca_dmg_": 0.4,
+      "plunge_dmg_": 0.4
+    }
+  },
+  "longnightsoath": {
+    "note": "4pc: Plunge DMG +15% per stack, max 5. Typed damage only.",
+    "options": [
+      {
+        "label": "5 stacks (+75% Plunge DMG)",
+        "damage": {
+          "plunge_dmg_": 0.75
+        }
+      },
+      {
+        "label": "0 stacks",
+        "damage": {}
+      }
+    ]
+  },
+  "retracingbolide": {
+    "note": "4pc: NA/CA DMG +40% while shielded. Typed damage only.",
+    "damage": {
+      "na_dmg_": 0.4,
+      "ca_dmg_": 0.4
+    }
+  },
+  "lavawalker": {
+    "note": "4pc: +35% DMG vs Pyro-affected opponents. Typed damage only.",
+    "damage": {
+      "dmg_": 0.35
+    }
+  },
+  "thundersoother": {
+    "note": "4pc: +35% DMG vs Electro-affected opponents. Typed damage only.",
+    "damage": {
+      "dmg_": 0.35
+    }
+  },
+  "finaleofthedeepgalleries": {
+    "note": "4pc: NA/Burst DMG +60% at 0 Energy. Typed damage only.",
+    "damage": {
+      "na_dmg_": 0.6,
+      "burst_dmg_": 0.6
+    }
+  },
+  "vourukashasglow": {
+    "note": "4pc: Skill/Burst DMG +10%, up to +90% after taking damage. Typed damage only.",
+    "options": [
+      {
+        "label": "Max stacks (+90%)",
+        "damage": {
+          "skill_dmg_": 0.9,
+          "burst_dmg_": 0.9
+        }
+      },
+      {
+        "label": "Base (+10%)",
+        "damage": {
+          "skill_dmg_": 0.1,
+          "burst_dmg_": 0.1
+        }
+      }
+    ]
+  },
+  "emblemofseveredfate": {
+    "note": "4pc: Burst DMG increased by 25% of ER, max 75%. Damage-only; not a stat.",
+    "damage": {}
+  },
+  "crimsonwitchofflames": {
+    "note": "4pc: reaction DMG bonuses and stacking 2pc effect. Damage-only.",
+    "damage": {}
+  },
+  "thunderingfury": {
+    "note": "4pc: reaction DMG bonuses and cooldown reduction. Damage-only.",
+    "damage": {}
+  },
+  "flowerofparadiselost": {
+    "note": "4pc: Bloom/Hyperbloom/Burgeon DMG bonuses. Damage-only.",
+    "damage": {}
+  },
+  "viridescentvenerer": {
+    "note": "4pc: Swirl DMG bonus and 40% elemental RES shred. Not a self stat.",
+    "damage": {}
+  },
+  "deepwoodmemories": {
+    "note": "4pc: 30% Dendro RES shred. Not a self stat.",
+    "damage": {}
+  },
+  "oceanhuedclam": {
+    "note": "4pc: healing-based Sea-Dyed Foam damage. Not a stat.",
+    "damage": {}
+  },
+  "maidenbeloved": {
+    "note": "4pc: increases healing received. Not a stat.",
+    "damage": {}
+  },
+  "songofdayspast": {
+    "note": "4pc: healing-based damage proc. Not a stat.",
+    "damage": {}
+  }
+}

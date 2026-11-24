@@ -1,0 +1,19 @@
+# Local account data and generated reports
+/report.json
+/report.html
+/gamedata.json
+/run.log
+/genshin_export_*.json
+
+# Local documentation and deploy helpers
+/README.md
+/static.yml
+/publish/
+/site-test/
+/thin.html
+/*.zip
+
+# Dependencies and OS files
+/node_modules/
+.DS_Store
+Thumbs.db

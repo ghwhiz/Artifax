@@ -1,0 +1,56 @@
+{
+  "odette": {
+    "stat": "atk",
+    "value": 2000,
+    "note": "0.7% Stellar reaction Base DMG per 100 ATK, max 14% at 2,000 ATK",
+    "source": "Stellar Jubilee: Dance of Aurore"
+  },
+  "sandrone": {
+    "stat": "atk",
+    "value": 2000,
+    "note": "0.7% Stellar reaction Base DMG per 100 ATK, max 14% at 2,000 ATK",
+    "source": "Stellar Jubilee: Light of Rationalisme"
+  },
+  "travelercryo": {
+    "stat": "atk",
+    "value": 2000,
+    "note": "0.35% Stellar reaction Base DMG per 100 ATK, max 7% at 2,000 ATK",
+    "source": "Stellar Jubilee: Illusory Frostmirror"
+  },
+  "durin": {
+    "stat": "atk",
+    "value": 2500,
+    "note": "3% additional DMG per 100 ATK, max 75% at 2,500 ATK",
+    "source": "Chaos Formed Like the Night"
+  },
+  "chevreuse": {
+    "stat": "hp",
+    "value": 40000,
+    "note": "1% party ATK per 1,000 Max HP, max 40% at 40,000 HP",
+    "source": "Vertical Force Coordination"
+  },
+  "columbina": {
+    "stat": "hp",
+    "value": 35000,
+    "note": "0.2% Lunar reaction Base DMG per 1,000 Max HP, max 7% at 35,000 HP",
+    "source": "Moonsign Benediction: Moonlight, Lent Unto You"
+  },
+  "arlecchino": {
+    "stat": "atk",
+    "value": 3000,
+    "note": "1% RES per 100 ATK above 1,000, max 20% at 3,000 ATK (defensive)",
+    "source": "Strength Alone Can Defend"
+  },
+  "kazuha": {
+    "stat": "eleMas",
+    "value": 1000,
+    "note": "0.04% Elemental DMG per EM, max 40% at 1,000 EM",
+    "source": "Poetics of Fuubutsu"
+  },
+  "nahida": {
+    "stat": "eleMas",
+    "value": 1000,
+    "note": "Tri-Karma Purification only: 0.03% CRIT Rate and 0.1% DMG per EM above 200, max 24% CR / 80% DMG at 1,000 EM",
+    "source": "Awakening Elucidated"
+  }
+}

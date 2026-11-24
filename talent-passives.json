@@ -1,0 +1,210 @@
+{
+  "Sandrone": {
+    "note": "A4: Elemental Mastery +8 per 100 ATK, max +160.",
+    "conversions": [
+      {
+        "from": "atk",
+        "to": "eleMas",
+        "ratio": 0.08,
+        "cap": 160
+      }
+    ],
+    "always": true
+  },
+  "HuTao": {
+    "note": "A4: +33% Pyro DMG while HP is 50% or lower.",
+    "options": [
+      {
+        "label": "HP <= 50% (+33% Pyro DMG)",
+        "stats": {
+          "pyro_dmg_": 0.33
+        }
+      },
+      {
+        "label": "HP > 50%",
+        "stats": {}
+      }
+    ]
+  },
+  "Kazuha": {
+    "note": "A4: 0.04% Elemental DMG per point of EM, max 40%.",
+    "conversions": [
+      {
+        "from": "eleMas",
+        "to": "dmg_",
+        "ratio": 0.0004,
+        "cap": 0.4
+      }
+    ],
+    "always": true
+  },
+  "Nahida": {
+    "note": "A4: Tri-Karma Purification only: 0.03% CRIT Rate and 0.1% DMG per EM above 200, max 24% CRIT Rate / 80% DMG. Not general stats.",
+    "stats": {},
+    "always": true
+  },
+  "Mona": {
+    "note": "A4: Hydro DMG Bonus +20% of Energy Recharge.",
+    "conversions": [
+      {
+        "from": "er",
+        "to": "hydro_dmg_",
+        "ratio": 0.2
+      }
+    ],
+    "always": true
+  },
+  "RaidenShogun": {
+    "note": "A4: 0.4% Electro DMG per 1% Energy Recharge above 100%.",
+    "conversions": [
+      {
+        "from": "er",
+        "above": 1,
+        "to": "electro_dmg_",
+        "ratio": 0.4
+      }
+    ],
+    "always": true
+  },
+  "Albedo": {
+    "note": "A4: nearby party Elemental Mastery +125 after Burst.",
+    "stats": {
+      "eleMas": 125
+    }
+  },
+  "Chevreuse": {
+    "note": "A4: party ATK +1% per 1,000 Max HP, max +40%.",
+    "conversions": [
+      {
+        "from": "hp",
+        "to": "atk_",
+        "ratio": 0.00001,
+        "cap": 0.4
+      }
+    ],
+    "always": true
+  },
+  "Yelan": {
+    "note": "A1: Max HP increases with the number of Elemental Types in the party.",
+    "options": [
+      {
+        "label": "4 types (+30% HP)",
+        "stats": {
+          "hp_": 0.3
+        }
+      },
+      {
+        "label": "3 types (+18% HP)",
+        "stats": {
+          "hp_": 0.18
+        }
+      },
+      {
+        "label": "2 types (+12% HP)",
+        "stats": {
+          "hp_": 0.12
+        }
+      },
+      {
+        "label": "1 type (+6% HP)",
+        "stats": {
+          "hp_": 0.06
+        }
+      }
+    ]
+  },
+  "Neuvillette": {
+    "note": "A4: Hydro DMG +0.6% per 1% current HP above 30% Max HP, max 30%.",
+    "options": [
+      {
+        "label": "80%+ HP (+30% Hydro DMG)",
+        "stats": {
+          "hydro_dmg_": 0.3
+        }
+      },
+      {
+        "label": "50% HP (+12% Hydro DMG)",
+        "stats": {
+          "hydro_dmg_": 0.12
+        }
+      },
+      {
+        "label": "No bonus",
+        "stats": {}
+      }
+    ]
+  },
+  "Mavuika": {
+    "note": "A1: ATK +30% for 10s after a nearby Nightsoul Burst.",
+    "options": [
+      {
+        "label": "After Nightsoul Burst (+30% ATK)",
+        "stats": {
+          "atk_": 0.3
+        }
+      },
+      {
+        "label": "No bonus",
+        "stats": {}
+      }
+    ]
+  },
+  "Xilonen": {
+    "note": "A4: DEF +20% for 15s after a nearby Nightsoul Burst.",
+    "options": [
+      {
+        "label": "After Nightsoul Burst (+20% DEF)",
+        "stats": {
+          "def_": 0.2
+        }
+      },
+      {
+        "label": "No bonus",
+        "stats": {}
+      }
+    ]
+  },
+  "Arlecchino": {
+    "note": "Passive: +40% Pyro DMG while in combat.",
+    "stats": {
+      "pyro_dmg_": 0.4
+    }
+  },
+  "Tighnari": {
+    "note": "A4: Charged Attack and Tanglevine Shaft DMG only, max 60%. Not general stats.",
+    "stats": {},
+    "always": true
+  },
+  "Nilou": {
+    "note": "A4: Bountiful Core DMG based on Max HP above 30,000. Not a general stat.",
+    "stats": {},
+    "always": true
+  },
+  "Furina": {
+    "note": "A4: Salon Solitaire DMG/healing based on Max HP. Not a general stat.",
+    "stats": {},
+    "always": true
+  },
+  "Odette": {
+    "note": "A4: Stellar Glimmer DMG based on ATK above 1,000. Reaction-only.",
+    "stats": {},
+    "always": true
+  },
+  "Durin": {
+    "note": "A4: periodic attack DMG based on ATK. Damage-only.",
+    "stats": {},
+    "always": true
+  },
+  "Vodyanitsa": {
+    "constellation": 1,
+    "note": "C1 Waters in Full Splendor: each time Song of Ages Past heals, nearby party members gain flat ATK equal to 0.8% of Vodyanitsa's Max HP for 5s. Teamwide; modeled on Vodyanitsa's own sheet while she is on-field.",
+    "conversions": [
+      {
+        "from": "hp",
+        "to": "atk",
+        "ratio": 0.008,
+        "note": "C1: 0.8% of Max HP as flat ATK"
+      }
+    ]
+  }
+}
