@@ -354,10 +354,6 @@ tr:hover td{background:#1b2029}
 .pill.toggle.off{background:#2a2f38;color:var(--muted)}
 .upg{background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:8px 10px;margin:6px 0}
 .upg b{color:var(--good)}
-.help{max-width:900px;line-height:1.6}
-.help h3{margin:20px 0 6px}
-.help code{background:var(--panel2);padding:1px 5px;border-radius:4px}
-.help ul{padding-left:20px}
 .big{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:10px 0 18px}
 .big .stat .v{font-size:26px}
 @media(max-width:820px){
@@ -395,7 +391,6 @@ tr:hover td{background:#1b2029}
   <nav class="tabs">
     <button class="tab on" data-tab="chars">Characters</button>
     <button class="tab" data-tab="clean">Cleanup</button>
-    <button class="tab" data-tab="help">How it works</button>
   </nav>
   <div class="headerRight">
     <div class="chips" id="chips"></div>
@@ -404,7 +399,6 @@ tr:hover td{background:#1b2029}
     </button>
   </div>
   <input type="file" id="importFile" accept=".json,application/json" class="hide">
-  <input type="file" id="gamedataFile" accept=".json,application/json" class="hide">
 </header>
 <main>
   <section id="tab-chars">
@@ -430,7 +424,6 @@ tr:hover td{background:#1b2029}
               </div>
             </div>
             <div class="importrow">
-              <button class="btn hide" id="downloadReportBtn">Download report</button>
               <button class="btn hide" id="forgetBtn" title="Remove the saved export from this browser">Forget saved import</button>
             </div>
             <div class="sortchips" id="charSortChips"></div>
@@ -458,7 +451,6 @@ tr:hover td{background:#1b2029}
       <select id="slotFilter"></select>
       <select id="setFilter"></select>
       <input id="cleanSearch" type="search" placeholder="Search set / main / character...">
-      <button class="btn" id="csvBtn">Download list CSV</button>
       <span class="muted small" id="cleanCount"></span>
     </div>
     <div class="tablewrap">
@@ -472,9 +464,6 @@ tr:hover td{background:#1b2029}
     <div style="text-align:center;margin-top:10px"><button class="btn" id="moreBtn">Show more</button></div>
   </section>
 
-  <section id="tab-help" class="hide">
-    <div class="panel detail help" id="helpBody"></div>
-  </section>
 </main>
 <div id="helpTip" class="helpTip"></div>
 <div class="importOverlay hide" id="importOverlay">
@@ -485,17 +474,13 @@ tr:hover td{background:#1b2029}
     <div id="importDetail" class="small muted" style="margin-top:4px"></div>
     <div id="importNote" class="importNote hide"></div>
     <div class="importActions">
-      <button class="btn hide" id="importGameDataBtn">Choose gamedata.json</button>
       <button class="btn hide" id="importChooseBtn">Choose GOOD export</button>
-      <button class="btn hide" id="downloadReportBtn2">Download updated report</button>
       <button class="btn hide" id="importCloseBtn">Close</button>
     </div>
   </div>
 </div>
 <script>
 let R = /*__DATA__*/;
-window.__REPORT_TEMPLATE__ = /*__TEMPLATE__*/;
-window.__REPORT_APP__ = /*__APP_SOURCE__*/;
 </script>
 <script>
 /*__APP__*/

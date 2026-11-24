@@ -7,7 +7,6 @@
     "build": "node advisor.js",
     "data": "node build-data.js",
     "report": "node report.js",
-    "site": "node report.js --site",
-    "site:thin": "node report.js --site --thin"
+    "site": "node report.js --site"
   }
 }

@@ -2,7 +2,6 @@
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
   const esc = (s) => String(s == null ? '' : s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-  const safeStringify = (v) => JSON.stringify(v).replace(/<\/script/gi, '<\\/script');
   const SLOT = { flower: 'Flower', plume: 'Plume', sands: 'Sands', goblet: 'Goblet', circlet: 'Circlet' };
   const SLOTS = ['flower', 'plume', 'sands', 'goblet', 'circlet'];
   const SLOT_GLYPH = { flower: '✿', plume: '➶', sands: '⌛', goblet: '⚱', circlet: '♛' };
@@ -1404,7 +1403,7 @@
   }
   async function analyzeClient(raw, onProgress = () => {}) {
     const gd = GD();
-    if (!gd.chars) throw new Error('This report does not contain client-side calculation data. Regenerate report.html with report.js.');
+    if (!gd.chars) throw new Error('This page is missing its game data. Reload the page and try again.');
     const { chars, weapons, artifacts } = loadExportClient(raw);
     const pool = artifacts;
     const used = new Map();
@@ -1617,19 +1616,6 @@
     };
   }
 
-  function makeReportHtml(data) {
-    const tpl = window.__REPORT_TEMPLATE__;
-    const app = window.__REPORT_APP__;
-    if (!tpl || !app) return null;
-    const map = {
-      DATA: safeStringify(data),
-      APP: app,
-      TEMPLATE: safeStringify(tpl),
-      APP_SOURCE: safeStringify(app),
-    };
-    return tpl.replace(/\/\*__(DATA|APP|TEMPLATE|APP_SOURCE)__\*\//g, (_, key) => map[key]);
-  }
-
   function setImportProgress(pct, stage, detail) {
     const bar = $('#importBar');
     if (bar) bar.style.width = Math.max(0, Math.min(100, pct)) + '%';
@@ -1639,14 +1625,10 @@
   function showImportOverlay() {
     const ov = $('#importOverlay');
     if (ov) ov.classList.remove('hide');
-    const dl = $('#downloadReportBtn2');
-    if (dl) dl.classList.add('hide');
     const close = $('#importCloseBtn');
     if (close) close.classList.add('hide');
     const choose = $('#importChooseBtn');
     if (choose) choose.classList.add('hide');
-    const gdBtn = $('#importGameDataBtn');
-    if (gdBtn) gdBtn.classList.add('hide');
     const note = $('#importNote');
     if (note) note.classList.add('hide');
     setImportProgress(0, 'Reading export…', '');
@@ -1659,32 +1641,6 @@
   // ---- Shareable site boot flow ----
   const looksLikeGamedata = (v) => !!(v && typeof v === 'object' && v.chars && v.weapons
     && v.artMain && !Array.isArray(v.characters) && !Array.isArray(v.artifacts));
-  function needsGameData() {
-    const gd = R && R.calc && R.calc.gamedata;
-    return !gd || !gd.chars || !Object.keys(gd.chars).length;
-  }
-  function installGameData(gd) {
-    R.calc = R.calc || {};
-    R.calc.gamedata = gd;
-    gameDataHashValue = null;
-    if (!R.summary) return;
-    R.summary.setNames = gd.setNames || {};
-    R.summary.setEffects = gd.setEffects || {};
-    R.summary.setTwo = Object.fromEntries(Object.entries(gd.sets || {}).map(([k, v]) => [k, v.two]));
-    R.summary.breakpoints = gd.breakpoints || {};
-    R.summary.artMain5 = Object.fromEntries(Object.entries((gd.artMain || {})['5'] || {}).map(([k, arr]) => [k, arr[20] || 0]));
-  }
-  async function loadGameDataFromSite() {
-    if (location.protocol === 'file:') return null;
-    try {
-      const res = await fetch('gamedata.json', { cache: 'no-store' });
-      if (!res.ok) return null;
-      const gd = await res.json();
-      return looksLikeGamedata(gd) ? gd : null;
-    } catch (e) {
-      return null;
-    }
-  }
   function showBootPrompt(stage) {
     const ov = $('#importOverlay');
     if (ov) ov.classList.remove('hide');
@@ -1698,49 +1654,10 @@
       note.innerHTML = '<b>Need a GOOD file?</b> Export your account from Genshin Optimizer (or any GOOD-compatible exporter) and choose the JSON file here.';
     }
     $('#importChooseBtn').classList.remove('hide');
-    $('#importGameDataBtn').classList.add('hide');
-    $('#downloadReportBtn2').classList.add('hide');
     $('#importCloseBtn').classList.remove('hide');
   }
-  function showGameDataPrompt(detail) {
-    const ov = $('#importOverlay');
-    if (ov) ov.classList.remove('hide');
-    $('#importTitle').textContent = 'Load game data';
-    $('#importBar').style.width = '0%';
-    $('#importStage').textContent = 'This build does not include the Genshin game-data bundle. Choose gamedata.json to continue.';
-    $('#importDetail').textContent = detail || 'gamedata.json contains public character, weapon, artifact, and set tables. It contains no account data.';
-    const note = $('#importNote');
-    if (note) {
-      note.classList.remove('hide');
-      note.innerHTML = '<b>Where to get it:</b> run <code>node build-data.js</code> in the artifact-advisor folder, or copy <code>gamedata.json</code> from the desktop build. After it loads, you will be asked for your GOOD export.';
-    }
-    $('#importChooseBtn').classList.add('hide');
-    $('#importGameDataBtn').classList.remove('hide');
-    $('#downloadReportBtn2').classList.add('hide');
-    $('#importCloseBtn').classList.remove('hide');
-  }
-  async function startBoot() {
-    if (!needsGameData()) {
-      showBootPrompt();
-      return;
-    }
-    const ov = $('#importOverlay');
-    if (ov) ov.classList.remove('hide');
-    $('#importTitle').textContent = 'Loading game data';
-    $('#importBar').style.width = '35%';
-    $('#importStage').textContent = 'Looking for gamedata.json next to this page…';
-    $('#importDetail').textContent = '';
-    $('#importNote').classList.add('hide');
-    $('#importChooseBtn').classList.add('hide');
-    $('#importGameDataBtn').classList.add('hide');
-    $('#importCloseBtn').classList.add('hide');
-    const gd = await loadGameDataFromSite();
-    if (gd) {
-      installGameData(gd);
-      showBootPrompt('Game data loaded. Choose your GOOD export to build a report.');
-    } else {
-      showGameDataPrompt();
-    }
+  function startBoot() {
+    showBootPrompt();
   }
 
   function applyReport(result) {
@@ -1769,8 +1686,6 @@
     renderCharList({ scrollActive: true });
     renderChar();
     showTab('chars');
-    const dl = $('#downloadReportBtn');
-    if (dl) dl.classList.remove('hide');
   }
 
   function showRestoreOverlay(file) {
@@ -1781,8 +1696,6 @@
     $('#importDetail').textContent = 'Recalculating in this browser.';
     $('#importNote').classList.add('hide');
     $('#importChooseBtn').classList.add('hide');
-    $('#importGameDataBtn').classList.add('hide');
-    $('#downloadReportBtn2').classList.add('hide');
     $('#importCloseBtn').classList.add('hide');
     $('#importBar').style.width = '0%';
   }
@@ -1792,21 +1705,13 @@
     const buildId = sessionBuildId();
     const cached = analysis && analysis.schema === SESSION_SCHEMA && analysis.buildId === buildId
       && analysis.result && Array.isArray(analysis.result.characters) && analysis.result.characters.length
-      && (needsGameData() || analysis.gamedataHash === gameDataHash());
+      && analysis.gamedataHash === gameDataHash();
     if (cached) {
       applyReport(analysis.result);
       setForgetVisible(true);
       return true;
     }
     if (savedExport && savedExport.raw) {
-      if (needsGameData()) {
-        const gd = await loadGameDataFromSite();
-        if (gd) installGameData(gd);
-      }
-      if (needsGameData()) {
-        showGameDataPrompt('Load gamedata.json to restore your saved export.');
-        return false;
-      }
       showRestoreOverlay(savedExport.file);
       try {
         const result = await analyzeClient(JSON.parse(savedExport.raw), (pct, stage, detail) => setImportProgress(pct, stage, detail));
@@ -1824,19 +1729,6 @@
     }
     if (!hasReport()) startBoot();
     return false;
-  }
-
-  function downloadCurrentReport() {
-    const html = makeReportHtml(R);
-    if (!html) return;
-    const blob = new Blob([html], { type: 'text/html' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'report.html';
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    setTimeout(() => URL.revokeObjectURL(a.href), 30000);
   }
 
   function syncHeaderHeight() {
@@ -2756,96 +2648,6 @@
     $('#moreBtn').style.display = arr.length > state.limit ? '' : 'none';
   }
 
-  function csv() {
-    const arr = cleanFiltered();
-    const head = ['set', 'slot', 'main', 'level', 'substats', 'fourth_stat', 'best_char', 'best_build', 'projected', 'potential_pct', 'verdict'];
-    const lines = [head.join(',')];
-    for (const a of arr) {
-      const subs = a.subs.map((s) => `${statLabel(s.key)} ${PCT.has(s.key) ? (s.val * 100).toFixed(1) + '%' : Math.round(s.val)}`).join('; ');
-      const fourth = (a.hidden || []).map((s) => `${statLabel(s.key)} ${PCT.has(s.key) ? (s.val * 100).toFixed(1) + '%' : Math.round(s.val)}`).join('; ');
-      lines.push([a.setKey, a.slot, a.main, a.level, subs, fourth, a.fit && charLabel(a.fit.char), a.fit && a.fit.build, a.projected, a.potPct, a.verdict].map((x) => `"${String(x == null ? '' : x).replace(/"/g, '""')}"`).join(','));
-    }
-    const blob = new Blob([lines.join('\r\n')], { type: 'text/csv' });
-    const url = URL.createObjectURL(blob);
-    const el = document.createElement('a');
-    el.href = url; el.download = 'artifact-salvage.csv'; el.click();
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
-  }
-
-  function renderHelp() {
-    $('#helpBody').innerHTML = `
-      <h2 style="margin-top:0">How this works</h2>
-      <p>This is a fully local tool. It reads a GOOD export, uses Genshin Optimizer's stat tables and GGArtifact's build presets, and never makes a network request.</p>
-      <h3>Per-character result</h3>
-      <ul>
-        <li>Every owned character gets a target build (from GGArtifact's curated presets, or a generic fallback). Use the dropdown to switch between that character's builds.</li>
-        <li>The header stays pinned while the character detail pane scrolls. The left column stays fixed and holds the character identity card, the weapon card with selector and base/secondary stats, and the character list. Rows show constellation and level; the identity card shows level/constellation plus element, weapon-type, and region icon chips, the artifact score with the character's rarity stars, and the score bar. The character list scrolls inside its own panel without chaining to the page. The last opened character is remembered, falling back to Amber. On two-column layouts, drag the thin divider between the left and right panes to resize the left column between 15% and 30% of the window; the width and last character are stored locally under <code>artifactAdvisor.settings</code>.</li>
-        <li>The character list has two mutually exclusive modes, switched by the wide <b>Filters</b> bar at the top of the list panel. The bar's arrow points down when filters are closed and up when the filter menu is open. Filters slide down from the top; switching back to search slides them up and reveals the search field. In filter mode, click any number of element, weapon-type, and region symbols. Selections within one category are OR; categories combine as AND. Region symbols follow release order, with Unknown last. Element, weapon-type, and region rows always occupy separate lines. A single <b>×</b> in the top-right corner of the filter row clears every selected filter. Only the active mode affects the list. Sort chips cover name, level, release date, and score in that order. Clicking the active sort again reverses it and flips the arrow, without moving the list's scroll position.</li>
-        <li>For a 4-piece target build, the optimizer <b>requires four pieces of that set</b>. Modeled 4-piece effects can be toggled and configured in the Set Passive(s) card; unmodeled or damage-only effects are described there.</li>
-        <li>It picks the remaining pieces to maximize weighted stats, with a penalty for missing the ER target.</li>
-        <li>Final stats are computed from character base stats, weapon base ATK/substat, artifact main stats and substats, 2-piece set bonuses, ascension stats, and modeled passives. Always-active passive effects are treated like base stats; only conditional effects use an On/Off pill.</li>
-        <li>The right pane has three tabs: <b>Artifacts</b> (the default build view), <b>Talents</b>, and <b>Constellation</b>. Talents shows expandable Normal/Skill/Burst cards with base levels, C3/C5 level bonuses, effective levels, full descriptions, passive talents, and the modeled stat passive. Constellation shows all six constellations with locked/unlocked status. Active talent levels affect ability multipliers, not the stat sheet.</li>
-        <li>Only stats relevant to the selected build are shown by default; <b>Show all stats</b> reveals every stat. The damage card is named for the actual type (Physical DMG, Pyro DMG, Anemo DMG, etc.). Stat cards show the title, final value, targets, and an S/A/B/C/D/F grade against those targets. Hover a card for about a second to slide out its source breakdown: base, ascension, weapon, artifacts, 2pc/4pc, passive, or conversion. The popup floats over the page and does not move the layout.</li>
-        <li>The 0-300 <b>artifact score</b> uses the same idea as GGArtifact: convert each useful stat to CRIT DMG-equivalent, normalize against a perfect 9-roll-per-piece build. It measures artifact quality only, so it is independent of the character's or weapon's level; the stat sheet below is level-aware.</li>
-        <li><b>Targets</b>: <b>min</b> = 24 useful substat rolls at average roll size with always-active passives but without conditional weapon/set/character passives; <b>good</b> = the same build with conditional passives active; <b>max</b> = 45 max rolls with conditional passives at their default (usually max) stacks. When a kit breakpoint exists (e.g. Odette 2,000 ATK), it replaces min. ER uses the build's ER target.</li>
-        <li><b>Passive cards</b>: Weapon Passive, Set Passive(s), and Character Passives. Character Passives cover modeled talent passives and constellation stat effects in the same card. The On/Off pill is right of the title and only controls conditional effects; always-active effects have no toggle. Always-active bonuses are right-aligned on the title row, while conditional effects are left-aligned below the title; stack/state dropdowns stay on the right. Always-active passives can still have a state dropdown (e.g. Ascendant/Nascent Gleam). The whole card expands for the full description. Set cards use plural names when multiple passives are in play, and card heights stay uniform when switching characters.</li>
-        <li><b>Set passive</b>: 2-piece set bonuses are always active. Modeled 4-piece effects are conditional, with an On/Off toggle and a stack/condition dropdown where needed (e.g. Blizzard Frozen/Cryo, Marechaussee 0-3 stacks, Husk 0-4). Damage-only effects are listed separately and do not change stat targets.</li>
-        <li><b>Weapon passive</b>: always-active bonuses (for example Homa's HP% and HP-to-ATK conversion) stay in the stat sheet and are not toggleable. Conditional bonuses use the On/Off pill; stack passives have a dropdown that defaults to max stacks (e.g. Blackcliff 1/2/3). Weapon base ATK, substat, and ascension stats always remain. Damage-only bonuses are listed separately and do not change stat targets. The five recommended pieces are optimized per toggle state.</li>
-        <li><b>Weapon trial</b>: open the weapon picker to choose any owned weapon of the character's weapon type. The equipped in-game weapon is pinned at the top, followed by the imported recommendations grouped into Signature BIS, 5-star, 4-star, and 3-star tiers, then other owned weapons. Rows are tinted by rarity, with dividers between the equipped, recommended, and remaining sections. The line under the picker shows whether the selected weapon is equipped in game, equipped on another character, unequipped, or a TRY weapon. Hover a weapon name to see its full name. BIS/TRY badges give way to the weapon name when the card is narrow. Stats, targets, passive cards, and swap tables update for the selected weapon. The artifact selection stays as currently chosen; use the artifact slots and candidate list to test different pieces for that weapon.</li>
-        <li><b>TRY weapons</b>: a recommended weapon you do not own still appears in the picker, marked TRY. It is simulated at max level and base refinement (Lv 90 R1). If you own it, its actual level and refinement are used instead. A BIS tag is only shown for the current character's actual signature recommendation, never for borrowed or other owned weapons.</li>
-        <li><b>Artifact loadout</b>: five equally sized stat cards form a U around a top-middle slot cluster, with two circular slots above three. Use the build chips to switch between equipped artifacts and each calculated build; the old pieces fade out and the new ones slide in. Click a slot to open its candidate list, capped at 12 with no scrollbar. Click a round candidate to preview its stats in the stretched detail card, or drag it onto the matching slot to equip it. Artifact circles show level and roll count, plus a top-right swap button for comparing the slotted piece with the in-game equipped piece. It is hidden only on the initial Equipped loadout before anything has been previewed; once a comparison exists, it stays through both sides of the swap. Stat cards keep the main stat in the top-right and compare against the non-showing piece: higher stats turn green with the change to the left, lower stats turn red with the change to the left, and unmatched substats show the other piece's name and value struck through. The candidate detail compares against the current slotted piece. Four substats remain in a fixed single column with right-aligned values. Equipped-on info appears only in the candidate detail, where the text is larger. CRIT Rate, CRIT DMG, and Energy Recharge are abbreviated to CR, CD, and ER. The stat sheet, score, grades, and delta vs. the recommended build update immediately.</li>
-        <li><b>Best +20 swap per slot</b>: the best max-level piece you own for each slot, preferring the target set so the 4-piece stays intact. It shows the score and stat change if you swap it in.</li>
-        <li><b>Unleveled pieces worth rolling</b>: unleveled pieces whose projected +20 score is close to or better than the current piece. Projected scores assume average rolls; the note warns if the swap would break the 4-piece set.</li>
-      </ul>
-      <h3>Artifact potential</h3>
-      <ul>
-        <li><code>now</code> is the artifact's weighted score at its current level.</li>
-        <li><code>at +20</code> is the expected score if you level it to 20, assuming average rolls into its existing substats.</li>
-        <li><code>potential %</code> is its percentile among artifacts in the same slot + main-stat group and the same level bracket (unleveled vs +20). A level-0 piece at 95% is worth rolling.</li>
-        <li>For 3-line artifacts, the fourth substat is already in the export as <code>unactivatedSubstats</code>. It is shown in amber and used in the +20 projection, so a good hidden stat raises the projected score and a dead one lowers it.</li>
-      </ul>
-      <h3>Verdicts</h3>
-      <ul>
-        <li><span class="badge v-KEEP">KEEP</span> used in at least one character's best build, or top-tier for its slot/main group.</li>
-        <li><span class="badge v-LEVEL">LEVEL</span> unmaxed with high projected potential — level it, then re-run.</li>
-        <li><span class="badge v-REVIEW">REVIEW</span> middle of the pack; decide based on set and roster needs.</li>
-        <li><span class="badge v-SALVAGE">SALVAGE</span> low fit and low potential. Never assigned to equipped pieces, pieces used in any best build, or the best piece you own for a given set + slot + main-stat combo.</li>
-      </ul>
-      <h3>Salvage vs. artifact EXP</h3>
-      <p>Salvaging a 5-star artifact is <b>EXP-neutral</b> compared with feeding it directly: both give 3,780 artifact EXP. The advantage of salvaging is storage: it compresses into stackable Sanctifying Essence/Unction, so it is the cleaner default for confirmed trash. The real alternative to weigh is the <b>Artifact Strongbox</b> (3 artifacts → 1 targeted set piece), which spends three pieces for a chance at a specific set. Use SALVAGE for pieces you are confident you will never equip; use the strongbox when you are hunting a particular set.</p>
-      <h3>Suggested workflow</h3>
-      <ol>
-        <li>Open <b>Cleanup</b>, filter to <b>SALVAGE</b>, and scan the best-fit column. These are the pieces with the least claim on a roster slot.</li>
-        <li>Filter to <b>LEVEL</b> and level those pieces to +4 or +8. Re-run the tool; good rolls will move them to KEEP/REVIEW, bad ones to SALVAGE.</li>
-        <li>Use <b>Download list CSV</b> as a salvage checklist, or keep it next to the game while cleaning.</li>
-        <li>Re-run after a new export or a patch. Artifact value changes when new characters and sets are added.</li>
-      </ol>
-      <h3>Why GGArtifact sometimes ranks a piece lower than you expect</h3>
-      <ul>
-        <li>The main stat is worth about 62 CRIT DMG-equivalent. A perfect-substat piece with the wrong main stat loses to a mediocre piece with the right main stat.</li>
-        <li>Every roll has a size (0.7x to 1.0x of max). Two pieces with the same stats can differ by 20-30% in score.</li>
-        <li>Dead stats consume roll budget. A 4th stat the character doesn't want lowers the expected value of future rolls.</li>
-        <li>Scores are normalized per build. A 250 on one character is not the same raw power as a 250 on another.</li>
-        <li>Set context matters: 4-piece completion can beat better raw substats, and the optimizer accounts for that.</li>
-      </ul>
-      <h3>Limitations</h3>
-      <ul>
-        <li>Weapon passive modeling is partial: about 90 weapon entries are modeled. Unmodeled weapons show the full passive text and add nothing to the stat sheet.</li>
-        <li>Always-active vs. conditional classification is curated per entry. If an always-active bonus is missing from the data, it is not added.</li>
-        <li>For a passive with several independent stack sources, the dropdown chooses the total active stacks; it does not simulate each source's timer separately.</li>
-        <li>4-piece set modeling is partial: stat-relevant 4pc effects are modeled with condition dropdowns; damage-only and RES-shred effects are listed but not in the stat sheet.</li>
-        <li>Targets are simulated from artifact rolls (min/good = 24, max = 45) at the build's weights, not a full rotation or team-buff simulation.</li>
-        <li>Recommended pieces are optimized for the current passive state; toggling a passive re-optimizes the five pieces and updates stats, targets, and swap tables.</li>
-        <li>ER targets are derived from the build's ER weight, not from a full rotation simulation.</li>
-        <li>Characters without game data (e.g. brand-new beta units) are skipped and listed in the report summary.</li>
-        <li>Per-character results are independent: the same artifact can appear as best-in-slot for several characters. Use the "Used by" column when deciding what to salvage.</li>
-      </ul>
-      <h3>Re-running</h3>
-      <p><b>From this page:</b> use the upload button at the far right of the header (hover it to see the last import date), choose a GOOD JSON, and wait for the progress bar. Everything is recalculated locally in the browser: characters, artifact choices, targets, weapon recommendations, and cleanup verdicts. After it finishes, use <b>Download report</b> to save a standalone HTML copy. ${hasReport() ? '' : 'This shareable page ships without account data. '}When browser storage is available, the last export and its analysis are kept on this device so a reload restores them; use <b>Forget saved import</b> under the character list to remove that copy.</p>
-      <p>If the import reports skipped characters or missing weapons, the bundled game data is older than the export. Regenerate it with <code>node build-data.js</code> from <code>artifact-advisor/</code>, then rebuild <code>report.html</code> with <code>node report.js</code>.</p>
-      <p><b>From the CLI:</b> from <code>artifact-advisor/</code>, run <code>node advisor.js path\\to\\export.json</code>, then open <code>report.html</code>. Options: <code>--beam 200 --perSlot 60</code> for a slower, more thorough search.</p>`;
-  }
-
   function showSubtab(tab) {
     state.subtab = tab;
     $$('#charSubtabs .subtab').forEach((b) => b.classList.toggle('on', b.dataset.subtab === tab));
@@ -2860,9 +2662,7 @@
     $$('.tab').forEach((b) => b.classList.toggle('on', b.dataset.tab === tab));
     $('#tab-chars').classList.toggle('hide', tab !== 'chars');
     $('#tab-clean').classList.toggle('hide', tab !== 'clean');
-    $('#tab-help').classList.toggle('hide', tab !== 'help');
     if (tab === 'clean') renderClean();
-    if (tab === 'help') renderHelp();
   }
 
   function filterIconSrc(kind, val) {
@@ -2990,21 +2790,6 @@
     renderChar();
     $('#importBtn').onclick = () => $('#importFile').click();
     $('#importChooseBtn').onclick = () => $('#importFile').click();
-    $('#importGameDataBtn').onclick = () => $('#gamedataFile').click();
-    $('#gamedataFile').onchange = async (e) => {
-      const file = e.target.files && e.target.files[0];
-      if (!file) return;
-      e.target.value = '';
-      try {
-        const gd = JSON.parse(await file.text());
-        if (!looksLikeGamedata(gd)) throw new Error('That file is not a gamedata.json bundle.');
-        installGameData(gd);
-        const restored = await restoreSession();
-        if (!restored && hasReport()) hideImportOverlay();
-      } catch (err) {
-        showGameDataPrompt(String((err && err.message) || err));
-      }
-    };
     $('#importFile').onchange = async (e) => {
       const file = e.target.files && e.target.files[0];
       if (!file) return;
@@ -3015,17 +2800,7 @@
       try {
         const text = await file.text();
         const raw = JSON.parse(text);
-        if (looksLikeGamedata(raw)) {
-          if (hasReport() && !needsGameData()) throw new Error('That is gamedata.json, not a GOOD export.');
-          installGameData(raw);
-          const restored = await restoreSession();
-          if (!restored && hasReport()) hideImportOverlay();
-          return;
-        }
-        if (needsGameData()) {
-          showGameDataPrompt('Load gamedata.json first, then choose your GOOD export.');
-          return;
-        }
+        if (looksLikeGamedata(raw)) throw new Error('That file is the game-data bundle, not a GOOD export.');
         const wasBoot = !hasReport();
         const result = await analyzeClient(raw, (pct, stage, detail) => setImportProgress(pct, stage, detail));
         applyReport(result);
@@ -3035,8 +2810,6 @@
         setImportProgress(100, `${R.summary.analyzed} characters · ${R.summary.artifacts} artifacts${skippedText}`, saved
           ? 'Stats, targets, weapons, and cleanup verdicts were recalculated. Saved in this browser for reload.'
           : 'Stats, targets, weapons, and cleanup verdicts were recalculated. This browser could not save the export.');
-        $('#downloadReportBtn').classList.remove('hide');
-        $('#downloadReportBtn2').classList.remove('hide');
         $('#importCloseBtn').classList.remove('hide');
         $('#importNote').classList.add('hide');
         $('#importChooseBtn').classList.add('hide');
@@ -3051,8 +2824,6 @@
         $('#importBtn').disabled = false;
       }
     };
-    $('#downloadReportBtn').onclick = downloadCurrentReport;
-    $('#downloadReportBtn2').onclick = downloadCurrentReport;
     $('#forgetBtn').onclick = async () => {
       await clearSession();
       location.reload();
@@ -3104,7 +2875,6 @@
     $('#setFilter').onchange = (e) => { state.set = e.target.value; state.limit = 300; renderClean(); };
     $('#cleanSearch').oninput = (e) => { state.search = e.target.value; state.limit = 300; renderClean(); };
     $('#moreBtn').onclick = () => { state.limit += 300; renderClean(); };
-    $('#csvBtn').onclick = csv;
 
     restoreSession();
   }

@@ -41,7 +41,6 @@ jobs:
           mkdir -p _site
           cp index.html _site/index.html
           cp -r icons _site/icons
-          if [ -f gamedata.json ]; then cp gamedata.json _site/gamedata.json; fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

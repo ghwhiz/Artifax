@@ -55,11 +55,9 @@ function renderHtml(data, calc) {
   hash.update(app).update(tpl).update(JSON.stringify(calc));
   const calcWithId = { ...calc, buildId: hash.digest('hex').slice(0, 16) };
   const dataWithCalc = { ...data, calc: calcWithId };
-  return tpl.replace(/\/\*__(DATA|APP|TEMPLATE|APP_SOURCE)__\*\//g, (_, key) => ({
+  return tpl.replace(/\/\*__(DATA|APP)__\*\//g, (_, key) => ({
     DATA: safeStringify(dataWithCalc),
     APP: app,
-    TEMPLATE: safeStringify(tpl),
-    APP_SOURCE: safeStringify(app),
   }[key]));
 }
 
@@ -72,11 +70,8 @@ function buildReport(jsonPath = path.join(__dirname, 'report.json'), outPath = p
 
 // Shareable build: bundles public game data (gamedata.json and the passive
 // tables) but no account report. Visitors import their own GOOD export.
-// Pass `--thin` to omit gamedata.json; the page then fetches it from the site
-// root or asks the visitor to choose the file.
-function buildSite(outPath = path.join(__dirname, 'index.html'), opts = {}) {
+function buildSite(outPath = path.join(__dirname, 'index.html')) {
   const calc = calcBundle();
-  if (opts.thin) calc.gamedata = {};
   const html = renderHtml(emptyReport(calc), calc);
   fs.writeFileSync(outPath, html);
   return { outPath, size: fs.statSync(outPath).size };
@@ -85,7 +80,7 @@ function buildSite(outPath = path.join(__dirname, 'index.html'), opts = {}) {
 if (require.main === module) {
   const args = new Set(process.argv.slice(2));
   if (args.has('--site') || args.has('site')) {
-    const r = buildSite(path.join(__dirname, 'index.html'), { thin: args.has('--thin') });
+    const r = buildSite(path.join(__dirname, 'index.html'));
     console.log('wrote', r.outPath, (r.size / 1024 / 1024).toFixed(2) + ' MB');
   } else {
     const r = buildReport();
