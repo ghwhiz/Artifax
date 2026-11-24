@@ -15,12 +15,40 @@
 html{margin:0;height:100%}
 body{margin:0;min-height:100%}
 body{background:var(--bg);color:var(--text);font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-header{position:sticky;top:0;z-index:10;background:rgba(15,17,21,.96);border-bottom:1px solid var(--line);padding:10px 16px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
-h1{font-size:16px;margin:0;font-weight:650;letter-spacing:.2px}
-.tabs{display:flex;gap:4px}
+header{position:sticky;top:0;z-index:10;background:rgba(15,17,21,.96);border-bottom:1px solid var(--line);padding:10px 16px;display:flex;gap:14px;align-items:center;flex-wrap:nowrap}
+.headerMain{display:flex;align-items:center;gap:16px;flex:0 0 auto;min-width:0}
+h1{font-size:16px;margin:0;font-weight:650;letter-spacing:.2px;flex:0 0 auto}
+.tabs{display:flex;gap:4px;flex-wrap:nowrap;min-width:0}
 .tab{background:transparent;border:1px solid transparent;color:var(--muted);padding:6px 12px;border-radius:7px;cursor:pointer;font:inherit}
 .tab:hover{color:var(--text);background:var(--panel)}
 .tab.on{background:var(--panel);border-color:var(--line);color:var(--text)}
+.dataMenuWrap{position:relative;display:flex;flex:0 0 auto}
+.dataMenuBtn{display:inline-flex;align-items:center;gap:4px}
+.dataMenuBtn .chevron{width:12px;height:12px;flex:0 0 auto;transition:transform .15s ease}
+.dataMenuBtn[aria-expanded="true"]{background:var(--panel);border-color:var(--line);color:var(--text)}
+.dataMenuBtn[aria-expanded="true"] .chevron{transform:rotate(180deg)}
+.dataMenu{position:absolute;top:calc(100% + 6px);right:0;z-index:60;min-width:220px;max-width:calc(100vw - 24px);background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:6px;box-shadow:0 16px 38px rgba(0,0,0,.55)}
+.dataMenuDate{padding:7px 9px 8px;margin-bottom:4px;border-bottom:1px solid var(--line);font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dataMenuAction{display:block;width:100%;text-align:left;padding:8px 9px;border:0;border-radius:6px;background:transparent;color:var(--text);font:inherit;font-size:12px;cursor:pointer;white-space:nowrap}
+.dataMenuAction:hover{background:var(--panel2)}
+.headerChips{display:flex;align-items:center;justify-content:flex-end;flex:1 1 auto;min-width:0}
+.chips{display:flex;gap:6px;flex-wrap:nowrap;justify-content:flex-end;min-width:0;overflow-x:auto;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+@media(max-width:900px){
+  header{flex-wrap:wrap;align-items:flex-start;gap:6px}
+  .headerMain{width:100%;flex:0 0 100%}
+  .headerChips{width:100%;flex:0 0 100%;justify-content:flex-start}
+  .chips{justify-content:flex-start}
+  .dataMenu{top:calc(100% + 37px)}
+}
+@media(max-width:520px){
+  header{padding:8px 10px}
+  .headerMain{gap:10px}
+  h1{font-size:15px}
+  .tab{padding:5px 8px;font-size:13px}
+  .chip{padding:2px 7px;font-size:11px}
+  .chips{gap:4px}
+}
 .importOverlay{position:fixed;inset:0;z-index:120;background:rgba(5,7,10,.72);display:flex;align-items:center;justify-content:center;padding:20px}
 .importCard{width:min(540px,100%);background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 24px 60px rgba(0,0,0,.55)}
 .importCard h3{margin:0 0 12px;font-size:16px}
@@ -34,9 +62,7 @@ h1{font-size:16px;margin:0;font-weight:650;letter-spacing:.2px}
 .bootEmpty h2{margin:0 0 8px;font-size:20px}
 .bootEmpty p{margin:0 0 14px;color:var(--muted);font-size:13px;line-height:1.5}
 .bootEmpty .btn{padding:8px 16px}
-.headerRight{display:flex;align-items:center;justify-content:flex-end;gap:8px;margin-left:auto;flex-wrap:nowrap;min-width:0}
-.chips{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;min-width:0;flex:1 1 auto}
-.chip{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:12px;color:var(--muted)}
+.chip{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:12px;color:var(--muted);flex:0 0 auto;white-space:nowrap}
 .chip b{color:var(--text)}
 main{padding:14px 16px 40px}
 .hide{display:none!important}
@@ -76,10 +102,6 @@ body.chars-active .rightcol{height:100%;overflow:hidden}
 body.resizing,body.resizing *{cursor:ew-resize!important;user-select:none!important}
 .list{overflow:hidden;padding:6px;display:flex;flex-direction:column}
 .listtools{flex:0 0 auto}
-.importrow{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 8px}
-.importrow .btn{flex:1 1 auto;white-space:nowrap}
-.importBtn{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;padding:6px 8px;line-height:1}
-.importBtn svg{flex:0 0 auto}
 .sortchips{display:flex;flex-wrap:wrap;gap:4px;margin:0 0 8px}
 .sortchip{background:var(--panel2);border:1px solid var(--line);border-radius:999px;color:var(--muted);font:inherit;font-size:10px;padding:3px 7px;cursor:pointer;white-space:nowrap}
 .sortchip:hover{color:var(--text)}
@@ -387,17 +409,25 @@ tr:hover td{background:#1b2029}
 </head>
 <body>
 <header>
-  <h1>Artifact Advisor</h1>
-  <nav class="tabs">
-    <button class="tab on" data-tab="chars">Characters</button>
-    <button class="tab" data-tab="clean">Cleanup</button>
-  </nav>
-  <div class="headerRight">
-    <div class="chips" id="chips"></div>
-    <button class="btn importBtn" id="importBtn" data-tip="Import a new GOOD export." aria-label="Import a new GOOD export">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4"/><path d="m7 9 5-5 5 5"/><path d="M4 20h16"/></svg>
-    </button>
+  <div class="headerMain">
+    <h1>Artifact Advisor</h1>
+    <nav class="tabs">
+      <button class="tab on" data-tab="chars">Characters</button>
+      <button class="tab" data-tab="clean">Cleanup</button>
+      <div class="dataMenuWrap">
+        <button class="tab dataMenuBtn" id="dataMenuBtn" data-tip="Data management" aria-haspopup="menu" aria-expanded="false" aria-controls="dataMenu">
+          Data
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8l8 8 8-8"/></svg>
+        </button>
+        <div class="dataMenu hide" id="dataMenu" role="menu">
+          <div class="dataMenuDate" id="dataMenuDate">No export loaded</div>
+          <button class="dataMenuAction" id="dataMenuImport" role="menuitem">Import GOOD export</button>
+          <button class="dataMenuAction hide" id="forgetBtn" role="menuitem">Forget saved import</button>
+        </div>
+      </div>
+    </nav>
   </div>
+  <div class="headerChips"><div class="chips" id="chips"></div></div>
   <input type="file" id="importFile" accept=".json,application/json" class="hide">
 </header>
 <main>
@@ -422,9 +452,6 @@ tr:hover td{background:#1b2029}
                   <button type="button" class="filterClearAll" id="clearFiltersBtn" title="Clear all filters" aria-label="Clear all filters">✕</button>
                 </div>
               </div>
-            </div>
-            <div class="importrow">
-              <button class="btn hide" id="forgetBtn" title="Remove the saved export from this browser">Forget saved import</button>
             </div>
             <div class="sortchips" id="charSortChips"></div>
           </div>

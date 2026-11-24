@@ -66,6 +66,7 @@
 
   const state = { tab: 'chars', subtab: 'artifacts', char: null, build: 0, verdict: 'ALL', slot: 'ALL', set: 'ALL', cleanSort: null, cleanSortDir: 1, search: '', limit: 300, setOff: false, setOption: 0, talentOff: false, talentOption: 0, listMode: 'search', filterEle: [], filterWeapon: [], filterRegion: [], sortChar: 'score', sortDir: -1, passiveOpen: {}, weaponKey: null, weaponTargets: {}, showAllStats: false, loadoutMode: 'recommended', slotCompare: {}, pickSlot: 'flower', pickId: null };
   const hasReport = () => !!(R && !R.boot && Array.isArray(R.characters) && R.characters.length > 0);
+  let savedSession = false;
   const SETTINGS_KEY = 'artifactAdvisor.settings';
   function loadSettings() {
     try { return JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{}') || {}; } catch (e) { return {}; }
@@ -146,9 +147,15 @@
     return gameDataHashValue;
   }
   const sessionBuildId = () => (R.calc && R.calc.buildId) || 'dev';
-  function setForgetVisible(on) {
-    const btn = $('#forgetBtn');
-    if (btn) btn.classList.toggle('hide', !on);
+  function setSavedSession(on) {
+    savedSession = !!on;
+    renderDataMenu();
+  }
+  function setDataMenuOpen(open) {
+    const menu = $('#dataMenu');
+    const btn = $('#dataMenuBtn');
+    if (menu) menu.classList.toggle('hide', !open);
+    if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
   }
 
   async function persistSession(rawText, file, result) {
@@ -168,7 +175,7 @@
     } catch (e) {
       console.warn('Could not cache the analysis in the browser.', e);
     }
-    setForgetVisible(saved);
+    setSavedSession(saved);
     return saved;
   }
 
@@ -178,7 +185,7 @@
     } catch (e) {
       /* storage unavailable */
     }
-    setForgetVisible(false);
+    setSavedSession(false);
   }
 
   async function readSession() {
@@ -1708,7 +1715,7 @@
       && analysis.gamedataHash === gameDataHash();
     if (cached) {
       applyReport(analysis.result);
-      setForgetVisible(true);
+      setSavedSession(true);
       return true;
     }
     if (savedExport && savedExport.raw) {
@@ -1735,22 +1742,26 @@
     const h = document.querySelector('header');
     if (h) document.documentElement.style.setProperty('--header-h', h.offsetHeight + 'px');
   }
-  function importTipText() {
-    if (!hasReport()) return 'Import your GOOD export to build a report.';
+  function lastImportText() {
+    if (!hasReport()) return 'No export loaded';
     const file = String((R.summary && R.summary.file) || '').split(/[\\/]/).pop();
     const match = file.match(/genshin_export_(\d{4}-\d{2}-\d{2})(?:_(\d{2})-(\d{2}))?/);
     let when = match ? `${match[1]}${match[2] ? ` ${match[2]}:${match[3]}` : ''}` : '';
     if (!when && R.summary && R.summary.generated) {
       try { when = new Date(R.summary.generated).toLocaleString(); } catch (e) { when = ''; }
     }
-    return `Import a new GOOD export. Last import: ${when || 'unknown'}.`;
+    return when ? `Last import: ${when}` : 'Last import: unknown';
   }
-  function updateImportTip() {
-    const btn = $('#importBtn');
-    if (btn) btn.dataset.tip = importTipText();
+  function renderDataMenu() {
+    const date = $('#dataMenuDate');
+    if (date) date.textContent = lastImportText();
+    const imp = $('#dataMenuImport');
+    const forget = $('#forgetBtn');
+    if (imp) imp.classList.toggle('hide', savedSession);
+    if (forget) forget.classList.toggle('hide', !savedSession);
   }
   function renderChips() {
-    updateImportTip();
+    renderDataMenu();
     if (!hasReport()) {
       $('#chips').innerHTML = '<span class="chip">No export loaded</span>';
       return;
@@ -2788,7 +2799,15 @@
     document.body.classList.add('chars-active');
     renderCharList({ scrollActive: true });
     renderChar();
-    $('#importBtn').onclick = () => $('#importFile').click();
+    $('#dataMenuBtn').onclick = (e) => {
+      e.stopPropagation();
+      hideHelpTip();
+      setDataMenuOpen($('#dataMenu').classList.contains('hide'));
+    };
+    $('#dataMenuImport').onclick = () => {
+      setDataMenuOpen(false);
+      $('#importFile').click();
+    };
     $('#importChooseBtn').onclick = () => $('#importFile').click();
     $('#importFile').onchange = async (e) => {
       const file = e.target.files && e.target.files[0];
@@ -2796,7 +2815,6 @@
       e.target.value = '';
       showImportOverlay();
       $('#importTitle').textContent = 'Importing export';
-      $('#importBtn').disabled = true;
       try {
         const text = await file.text();
         const raw = JSON.parse(text);
@@ -2820,11 +2838,10 @@
         setImportProgress(100, 'Could not process this file.', String((err && err.message) || err));
         $('#importCloseBtn').classList.remove('hide');
         if (!hasReport()) $('#importChooseBtn').classList.remove('hide');
-      } finally {
-        $('#importBtn').disabled = false;
       }
     };
     $('#forgetBtn').onclick = async () => {
+      setDataMenuOpen(false);
       await clearSession();
       location.reload();
     };
@@ -2836,14 +2853,16 @@
     document.addEventListener('focusout', (e) => { const h = helpTarget(e); if (h) hideHelpTip(); });
     document.addEventListener('scroll', hideHelpTip, true);
     window.addEventListener('resize', hideHelpTip);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setDataMenuOpen(false); });
     document.addEventListener('click', (e) => {
       if (!$('#weaponPick') || !e.target.closest('#weaponPick')) {
         const menu = $('#weaponMenu');
         if (menu) menu.classList.add('hide');
       }
+      if (!(e.target instanceof Element) || !e.target.closest('.dataMenuWrap')) setDataMenuOpen(false);
     });
 
-    $$('.tab').forEach((b) => b.onclick = () => showTab(b.dataset.tab));
+    $$('.tab[data-tab]').forEach((b) => b.onclick = () => showTab(b.dataset.tab));
     $$('#charSubtabs .subtab').forEach((b) => b.onclick = () => { hideHelpTip(); showSubtab(b.dataset.subtab); });
     showSubtab(state.subtab);
     $('#charSearch').oninput = renderCharList;
